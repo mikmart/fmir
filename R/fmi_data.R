@@ -1,9 +1,16 @@
 #' Download weather data from the FMI API
 #'
+#' Given a query, request data from the FMI API download service and parse the
+#' XML response to a \code{tbl_df}.
+#'
 #' @param query a length 1 character vector containing the URL used to request
 #'   data from the FMI API download service
 #'
-#' @return a \code{tbl_df} containing the requested data
+#' @return A \code{tbl_df} containing the requested data. Both the number and
+#'   names of columns depend on the type and format of the query. See
+#'   \code{\link{fmi_query}} for details.
+#'
+#' @seealso \code{\link{fmi_query}} for constructing the \code{query} argument
 #' @export
 fmi_data <- function(query)
 {
