@@ -1,3 +1,9 @@
+#' Download weather data from the FMI API
+#'
+#' @param query a length 1 character vector containing the URL used to request data from the FMI API download service
+#'
+#' @return a \code{tbl_df} containing the requested data
+#' @export
 fmi_data <- function(query)
 {
   xml <- xml2::read_xml(query)

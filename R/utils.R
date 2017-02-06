@@ -1,3 +1,9 @@
+#' Set your FMI API key
+#'
+#' \code{fmi_set_key} saves your API key in your \code{options} for the duration of your R session so that you don't have to manually specify it each time you create a new query.
+#'
+#' @param api_key a length 1 character vector containing your personal FMI API key required to access the download service
+#' @export
 fmi_set_key <- function(api_key)
 {
   stopifnot(is.character(api_key), length(api_key) == 1)

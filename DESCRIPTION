@@ -27,3 +27,4 @@ Imports:
   xml2 (>= 1.0.0)
 Suggests:
   tidyverse
+RoxygenNote: 6.0.0

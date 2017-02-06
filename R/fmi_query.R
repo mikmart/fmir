@@ -1,3 +1,11 @@
+#' Construct a query to the FMI API
+#'
+#' @param type a length 1 character vector specifying the measurement interval of the observations to request
+#' @param ... name-value pairs of length 1 character vectors, used as query parameters
+#' @inheritParams fmi_set_key
+#'
+#' @return A length 1 character vector containing the URL for an FMI API query.
+#' @export
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
                       ..., api_key = getOption("fmi.api_key"))
 {
