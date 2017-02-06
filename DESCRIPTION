@@ -1,0 +1,29 @@
+Package: fmir
+Type: Package
+Title: Access open weather data from the Finnish Meteorological Institute with R
+Version: 0.0.0.9000
+Authors@R: person("Mikko", "Marttila", role = c("aut", "cre"),
+                  email = "mikko@mikkomarttila.com")
+Description: This package provides R functions for easily accessing up to date,
+    open weather data, made available by the Finnish Meteorological Institute.
+    Use simple R syntax to create HTML queries for the FMI API; download XML
+    data from the API and parse it into a regular R data set.
+    In order to use the open data API, you'll need to register with the Finnish
+    Meteorological Institute. See https://en.ilmatieteenlaitos.fi/open-data for
+    details.
+URL: https://github.com/mikmart/fmir
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends:
+  R (>= 3.3.1)
+Imports:
+  lazyeval (>= 0.2.0),
+  lubridate (>= 1.6.0),
+  purrr (>= 0.2.2),
+  readr (>= 1.0.0),
+  tibble (>= 1.2.0),
+  tidyr (>= 0.6.0),
+  xml2 (>= 1.0.0)
+Suggests:
+  tidyverse
