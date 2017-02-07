@@ -8,15 +8,35 @@ fmi_query(type = c("real-time", "daily", "monthly"), ...,
   api_key = getOption("fmi.api_key"))
 }
 \arguments{
-\item{type}{a length 1 character vector specifying the measurement interval of the observations to request}
+\item{type}{A length 1 character vector specifying the measurement interval
+of the observations to request}
 
-\item{...}{name-value pairs of length 1 character vectors, used as query parameters}
+\item{...}{Name-value pairs of length 1 character vectors, used as query
+parameters. See details for possible values.}
 
-\item{api_key}{a length 1 character vector containing your personal FMI API key required to access the download service}
+\item{api_key}{A length 1 character vector containing your personal FMI API
+key required to access the download service.}
 }
 \value{
 A length 1 character vector containing the URL for an FMI API query.
 }
 \description{
 Construct a query to the FMI API
+}
+\details{
+The list of possible parameters passed in \code{...} depends on the type and
+format of the query being constructed. Query-specific parameters are fully
+documented in the \href{http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services}{FMI Open Data Manual}.
+
+Common parameters include:
+
+\describe{
+  \item{starttime, endtime}{A date or datetime specifying the start/end of the
+    interval to request data for}
+  \item{place}{A string specifying the place of measurement in general terms.
+    E.g. \code{"Helsinki"}, \code{"Oulu"}}
+}
+}
+\seealso{
+\code{\link{fmi_set_key}} for setting the API key for your session.
 }
