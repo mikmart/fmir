@@ -1,12 +1,45 @@
+#' Set your FMI API key
+#'
+#' Use \code{fmi_set_key} to save your personal API key in \code{options} for
+#'   the duration of the R session so that it doesn't have to be manually
+#'   specified each time you create a new query.
+#'
+#' @param api_key A length 1 character vector containing your personal FMI API
+#'   key required to access the download service.
+#' @export
+fmi_set_key <- function(api_key)
+{
+  stopifnot(is.character(api_key), length(api_key) == 1)
+  options(fmi.api_key = api_key)
+}
+
+
 #' Construct a query to the FMI API
 #'
-#' @param type a length 1 character vector specifying the measurement interval
+#' @param type A length 1 character vector specifying the measurement interval
 #'   of the observations to request
-#' @param ... name-value pairs of length 1 character vectors, used as query
-#'   parameters
+#' @param ... Name-value pairs of length 1 character vectors, used as query
+#'   parameters. See details for possible values.
 #' @inheritParams fmi_set_key
 #'
+#' @details
+#' The list of possible parameters passed in \code{...} depends on the type and
+#' format of the query being constructed. Query-specific parameters are fully
+#' documented in the \href{http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services}{FMI Open Data Manual}.
+#'
+#' Common parameters include:
+#'
+#' \describe{
+#'   \item{\strong{starttime}}{A date or datetime specifying the start of the interval to
+#'     request data for}
+#'   \item{\strong{endtime}}{A date or datetime specifying the end of the interval to
+#'     request data for}
+#'   \item{\strong{place}}{A string specifying the place of measurement in
+#'     general terms. E.g. \code{"Helsinki"}, \code{"Oulu"}}
+#' }
+#'
 #' @return A length 1 character vector containing the URL for an FMI API query.
+#' @seealso \code{\link{fmi_set_key}} for setting the API key for your session.
 #' @export
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
                       ..., api_key = getOption("fmi.api_key"))
@@ -20,6 +53,7 @@ fmi_query <- function(type = c("real-time", "daily", "monthly"),
 
   paste(xml_url, fmi_query_params(dots), sep = "&")
 }
+
 
 fmi_stored_query <- function(type = c("real-time", "daily", "monthly"),
                              format = c("simple", "timevaluepair"))
@@ -36,6 +70,7 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly"),
   paste0("fmi::observations::weather", type, "::simple")
 }
 
+
 fmi_xml_url <- function(stored_query, api_key = getOption("fmi.api_key"))
 {
   if (is.null(api_key)) {
@@ -49,6 +84,7 @@ fmi_xml_url <- function(stored_query, api_key = getOption("fmi.api_key"))
   paste0("http://data.fmi.fi/fmi-apikey/", api_key,
          "/wfs?request=getFeature&storedquery_id=", stored_query)
 }
+
 
 fmi_query_params <- function(x)
 {
