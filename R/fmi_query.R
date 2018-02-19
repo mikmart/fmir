@@ -4,15 +4,25 @@
 #'   the duration of the R session so that it doesn't have to be manually
 #'   specified each time you create a new query.
 #'
-#' @param api_key A length 1 character vector containing your personal FMI API
+#' @param x A length 1 character vector containing your personal FMI API
 #'   key required to access the download service.
 #' @seealso \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
 #'   for obtaining a new API key.
 #' @export
-fmi_set_key <- function(api_key)
+fmi_set_key <- function(x)
 {
-  stopifnot(is.character(api_key), length(api_key) == 1)
-  options(fmir.api_key = api_key)
+  options(fmir.api_key = validate_api_key(x))
+}
+
+validate_api_key <- function(x)
+{
+  if (is.null(x)) {
+    warning("missing api key: you must supply `api_key` or set your ",
+            "FMI API-key with `fmi_set_key` to generate a valid query url")
+    return("insert-your-apikey-here")
+  }
+  stopifnot(is.character(x), length(x) == 1)  
+  x
 }
 
 
@@ -73,15 +83,7 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly"),
 
 fmi_xml_url <- function(stored_query, api_key = getOption("fmir.api_key"))
 {
-  if (is.null(api_key)) {
-    warning("missing api key: you must supply `api_key` or set your ",
-            "FMI API-key with `fmi_set_key` to generate a valid query url")
-    api_key <- "insert-your-apikey-here"
-  } else {
-    stopifnot(is.character(api_key), length(api_key) == 1)
-  }
-
-  paste0("http://data.fmi.fi/fmi-apikey/", api_key,
+  paste0("http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
          "/wfs?request=getFeature&storedquery_id=", stored_query)
 }
 
