@@ -1,10 +1,10 @@
-is_date_or_dttm <- function(x)
+is_dateish <- function(x)
 {
   lubridate::is.Date(x) || lubridate::is.POSIXt(x)
 }
 
-dttm_iso_fmt <- function(x)
+fmi_format_date <- function(x)
 {
-  stopifnot(is_date_or_dttm(x))
+  stopifnot(is_dateish(x))
   format(x, format = "%Y-%m-%dT%H:%M:%SZ")
 }
