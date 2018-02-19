@@ -54,13 +54,20 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly"))
 fmi_query_params <- function(x)
 {
   nm <- names(x)
-  if (is.null(nm) || any(nm == ""))
-    stop("unnamed query parameters supplied")
 
-  if (any(lengths(x) > 1)) {
-    vector_params <- x[lengths(x) > 1]
-    stop("length > 1 parameters are not currently supported : ",
-         paste(names(vector_params), collapse = ", "))
+  if (is.null(nm) || any(nm == ""))
+    stop("All query parameters must be named", call. = FALSE)
+
+  if (any(lengths(x) != 1)) {
+    bad <- x[lengths(x) != 1]
+    bad <- paste("  *", names(bad), "has length", lengths(bad))
+
+    msg <- paste0(
+      "All query parameters must have length 1:\n",
+      paste(bad, collapse = "\n")
+    )
+
+    stop(msg, call. = FALSE)
   }
 
   x <- purrr::map_if(x, is_dateish, fmi_format_date)
@@ -96,10 +103,23 @@ fmi_get_key <- function()
 validate_api_key <- function(x)
 {
   if (is.null(x)) {
-    warning("missing api key: you must supply `api_key` or set your ",
-            "FMI API-key with `fmi_set_key` to generate a valid query url")
+    msg <- paste0(
+      "API key is missing, using dummy key instead. ",
+      "The query will not be valid.\n",
+      "  Did you know that you can use `fmi_set_key()` ",
+      "to remember your key for the session?"
+    )
+    warning(msg, call. = FALSE)
     return("insert-your-apikey-here")
   }
-  stopifnot(is.character(x), length(x) == 1)
+
+  if (!is.character(x) || length(x) != 1) {
+    msg <- paste0(
+      "The API key must be a character vector of length 1, not a ",
+      typeof(x), if (is.atomic(x)) " vector", " of length ", length(x)
+    )
+    stop(msg, call. = FALSE)
+  }
+
   x
 }
