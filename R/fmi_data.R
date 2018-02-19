@@ -16,11 +16,11 @@
 #' @export
 fmi_data <- function(query, auto_spread = TRUE)
 {
-  xml <- xml2::read_xml(query)
+  xml <- xml2::read_xml(validate_query(query))
 
   tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
-  
+
   if (auto_spread && "ParameterName" %in% names(tbl))
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
 
@@ -30,6 +30,7 @@ fmi_data <- function(query, auto_spread = TRUE)
 
 fmi_xml_to_df <- function(xml)
 {
+  stopifnot(length(xml) == 1)
   vars <- purrr::set_names(fmi_xml_vars(xml))
   purrr::map_df(vars, fmi_xml_vals, xml = xml)
 }
@@ -45,4 +46,30 @@ fmi_xml_vals <- function(xml, var, parser = readr::parse_guess, ...)
   var_tag <- paste0("//BsWfs:", var)
   xml_var <- xml2::xml_find_all(xml, var_tag)
   parser(xml2::xml_text(xml_var), ...)
+}
+
+validate_query <- function(x) {
+  if (!is.character(x)) {
+    msg <- paste0(
+      "Query must be a character vector, not a ",
+      typeof(x), if (is.atomic(x)) " vector"
+    )
+
+    stop(msg, call. = FALSE)
+  }
+
+  if (length(x) != 1) {
+    msg <- paste0("Query must have length 1, not ", length(x))
+
+    if (length(x) > 1) {
+      msg <- paste0(
+        msg, "\nDid your query get split into multiple",
+        "queries automatically by `fmi_query()`?"
+      )
+    }
+
+    stop(msg, call. = FALSE)
+  }
+
+  x
 }
