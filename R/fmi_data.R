@@ -16,7 +16,7 @@ fmi_data <- function(query)
 {
   xml <- xml2::read_xml(query)
 
-  tbl <- fmi_xml_to_tbl(xml)
+  tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
   
   if ("ParameterName" %in% names(tbl))
@@ -26,7 +26,7 @@ fmi_data <- function(query)
   purrr::set_names(tbl, nm)
 }
 
-fmi_xml_to_tbl <- function(xml)
+fmi_xml_to_df <- function(xml)
 {
   vars <- purrr::set_names(fmi_xml_vars(xml))
   purrr::map_df(vars, fmi_xml_vals, xml = xml)
