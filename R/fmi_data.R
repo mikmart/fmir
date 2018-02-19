@@ -38,9 +38,9 @@ fmi_xml_vars <- function(xml)
   purrr::map_chr(xml2::xml_children(first_element), xml2::xml_name)
 }
 
-fmi_xml_vals <- function(xml, variable_name, parser = readr::parse_guess, ...)
+fmi_xml_vals <- function(xml, var, parser = readr::parse_guess, ...)
 {
-  variable_tag <- paste0("//BsWfs:", variable_name)
-  xml_variable <- xml2::xml_find_all(xml, variable_tag)
+  var_tag <- paste0("//BsWfs:", var)
+  xml_var <- xml2::xml_find_all(xml, var_tag)
   parser(xml2::xml_text(xml_variable), ...)
 }
