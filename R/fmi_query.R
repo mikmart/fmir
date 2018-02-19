@@ -54,16 +54,20 @@ validate_api_key <- function(x)
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
                       ..., api_key = getOption("fmir.api_key"))
 {
-  stored_query <- fmi_stored_query(type)
-  xml_url <- fmi_xml_url(stored_query, api_key)
+  base_url <- fmi_base_url(type, api_key)
 
   dots <- list(...)
   if (length(dots) == 0)
-    return(xml_url)
+    return(base_url)
 
-  paste(xml_url, fmi_query_params(dots), sep = "&")
+  paste(base_url, fmi_query_params(dots), sep = "&")
 }
 
+fmi_base_url <- function(type, api_key = getOption("fmir.api_key"))
+{
+  paste0("http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
+         "/wfs?request=getFeature&storedquery_id=", fmi_stored_query(type))
+}
 
 fmi_stored_query <- function(type = c("real-time", "daily", "monthly"))
 {
@@ -71,14 +75,6 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly"))
   type <- if (type == "real-time") "" else paste0("::", type)
   paste0("fmi::observations::weather", type, "::simple")
 }
-
-
-fmi_xml_url <- function(stored_query, api_key = getOption("fmir.api_key"))
-{
-  paste0("http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
-         "/wfs?request=getFeature&storedquery_id=", stored_query)
-}
-
 
 fmi_query_params <- function(x)
 {
