@@ -23,6 +23,8 @@
 #'
 #' @return A length 1 character vector containing the URL for an FMI API query.
 #' @seealso \code{\link{fmi_set_key}} for setting the API key for your session.
+#' @examples
+#' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
 #' @export
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
                       ..., api_key = getOption("fmir.api_key"))
@@ -92,4 +94,3 @@ validate_api_key <- function(x)
   stopifnot(is.character(x), length(x) == 1)
   x
 }
-
