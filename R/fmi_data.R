@@ -26,9 +26,8 @@ fmi_data <- function(query)
 
 fmi_xml_to_tbl <- function(xml)
 {
-  var_names <- purrr::set_names(fmi_xml_vars(xml))
-  df <- purrr::map_df(var_names, fmi_xml_vals, xml = xml)
-  tibble::as_tibble(df)
+  vars <- purrr::set_names(fmi_xml_vars(xml))
+  purrr::map_df(vars, fmi_xml_vals, xml = xml)
 }
 
 fmi_xml_vars <- function(xml)
