@@ -104,7 +104,7 @@ validate_api_key <- function(x)
 {
   if (is.null(x)) {
     msg <- paste0(
-      "API key is missing, using dummy key instead. ",
+      "API key not found, using dummy key instead. ",
       "The query will not be valid.\n",
       "  Did you know that you can use `fmi_set_key()` ",
       "to remember your key for the session?"
@@ -112,6 +112,9 @@ validate_api_key <- function(x)
     warning(msg, call. = FALSE)
     return("insert-your-apikey-here")
   }
+
+  if (is.na(x))
+    stop("The API key must not be missing (NA)", call.)
 
   if (!is.character(x) || length(x) != 1) {
     msg <- paste0(
