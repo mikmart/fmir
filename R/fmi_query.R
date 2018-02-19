@@ -65,17 +65,9 @@ fmi_query <- function(type = c("real-time", "daily", "monthly"),
 }
 
 
-fmi_stored_query <- function(type = c("real-time", "daily", "monthly"),
-                             format = c("simple", "timevaluepair"))
+fmi_stored_query <- function(type = c("real-time", "daily", "monthly"))
 {
   type <- match.arg(type)
-  format <- match.arg(format)
-
-  if (format != "simple") {
-    stop("invalid data format : ", format,
-      "only simple format data is implemented at this time")
-  }
-
   type <- if (type == "real-time") "" else paste0("::", type)
   paste0("fmi::observations::weather", type, "::simple")
 }
