@@ -5,6 +5,8 @@
 #'
 #' @param query a length 1 character vector containing the URL used to request
 #'   data from the FMI API download service
+#' @param auto_spread logical. Should data in long format be automatically
+#'   transformed to wide format?
 #'
 #' @return A \code{tbl_df} containing the requested data. Both the number and
 #'   names of columns depend on the type and format of the query. See
