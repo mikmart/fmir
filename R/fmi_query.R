@@ -60,7 +60,7 @@ fmi_query_params <- function(x)
          paste(names(vector_params), collapse = ", "))
   }
 
-  x <- purrr::map_if(x, is_date_or_dttm, dttm_iso_fmt)
+  x <- purrr::map_if(x, is_dateish, fmi_format_date)
   paste(collapse = "&", paste(nm, x, sep = "="))
 }
 
