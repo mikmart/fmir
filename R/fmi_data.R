@@ -42,5 +42,5 @@ fmi_xml_vals <- function(xml, var, parser = readr::parse_guess, ...)
 {
   var_tag <- paste0("//BsWfs:", var)
   xml_var <- xml2::xml_find_all(xml, var_tag)
-  parser(xml2::xml_text(xml_variable), ...)
+  parser(xml2::xml_text(xml_var), ...)
 }
