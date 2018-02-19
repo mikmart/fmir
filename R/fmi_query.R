@@ -1,31 +1,3 @@
-#' Set your FMI API key
-#'
-#' Use \code{fmi_set_key} to save your personal API key in \code{options} for
-#'   the duration of the R session so that it doesn't have to be manually
-#'   specified each time you create a new query.
-#'
-#' @param x A length 1 character vector containing your personal FMI API
-#'   key required to access the download service.
-#' @seealso \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
-#'   for obtaining a new API key.
-#' @export
-fmi_set_key <- function(x)
-{
-  options(fmir.api_key = validate_api_key(x))
-}
-
-validate_api_key <- function(x)
-{
-  if (is.null(x)) {
-    warning("missing api key: you must supply `api_key` or set your ",
-            "FMI API-key with `fmi_set_key` to generate a valid query url")
-    return("insert-your-apikey-here")
-  }
-  stopifnot(is.character(x), length(x) == 1)  
-  x
-}
-
-
 #' Construct a query to the FMI API
 #'
 #' @param type A length 1 character vector specifying the measurement interval
@@ -91,3 +63,32 @@ fmi_query_params <- function(x)
   x <- purrr::map_if(x, is_date_or_dttm, dttm_iso_fmt)
   paste(collapse = "&", paste(nm, x, sep = "="))
 }
+
+
+#' Set your FMI API key
+#'
+#' Use \code{fmi_set_key} to save your personal API key in \code{options} for
+#'   the duration of the R session so that it doesn't have to be manually
+#'   specified each time you create a new query.
+#'
+#' @param x A length 1 character vector containing your personal FMI API
+#'   key required to access the download service.
+#' @seealso \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
+#'   for obtaining a new API key.
+#' @export
+fmi_set_key <- function(x)
+{
+  options(fmir.api_key = validate_api_key(x))
+}
+
+validate_api_key <- function(x)
+{
+  if (is.null(x)) {
+    warning("missing api key: you must supply `api_key` or set your ",
+            "FMI API-key with `fmi_set_key` to generate a valid query url")
+    return("insert-your-apikey-here")
+  }
+  stopifnot(is.character(x), length(x) == 1)  
+  x
+}
+
