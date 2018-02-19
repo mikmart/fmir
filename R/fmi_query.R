@@ -4,7 +4,8 @@
 #'   of the observations to request
 #' @param ... Name-value pairs of length 1 character vectors, used as query
 #'   parameters. See details for possible values.
-#' @inheritParams fmi_set_key
+#' @param api_key A length 1 character vector containing your personal FMI
+#'   API key required to access the download service.
 #'
 #' @details
 #' The list of possible parameters passed in \code{...} depends on the type and
@@ -88,7 +89,7 @@ validate_api_key <- function(x)
             "FMI API-key with `fmi_set_key` to generate a valid query url")
     return("insert-your-apikey-here")
   }
-  stopifnot(is.character(x), length(x) == 1)  
+  stopifnot(is.character(x), length(x) == 1)
   x
 }
 
