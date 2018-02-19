@@ -5,7 +5,7 @@
 \title{Construct a query to the FMI API}
 \usage{
 fmi_query(type = c("real-time", "daily", "monthly"), ...,
-  api_key = getOption("fmi.api_key"))
+  api_key = getOption("fmir.api_key"))
 }
 \arguments{
 \item{type}{A length 1 character vector specifying the measurement interval
@@ -14,8 +14,8 @@ of the observations to request}
 \item{...}{Name-value pairs of length 1 character vectors, used as query
 parameters. See details for possible values.}
 
-\item{api_key}{A length 1 character vector containing your personal FMI API
-key required to access the download service.}
+\item{api_key}{A length 1 character vector containing your personal FMI
+API key required to access the download service.}
 }
 \value{
 A length 1 character vector containing the URL for an FMI API query.

@@ -4,21 +4,24 @@
 \alias{fmi_data}
 \title{Download weather data from the FMI API}
 \usage{
-fmi_data(query)
+fmi_data(query, auto_spread = TRUE)
 }
 \arguments{
 \item{query}{a length 1 character vector containing the URL used to request
 data from the FMI API download service}
+
+\item{auto_spread}{logical. Should data in long format be automatically
+transformed to wide format?}
 }
 \value{
-A \code{tbl_df} containing the requested data. Number and names of
-  columns depend on the type and format of the query. See \code{fmi_query}
-  for details.
+A \code{tbl_df} containing the requested data. Both the number and
+  names of columns depend on the type and format of the query. See
+  \code{\link{fmi_query}} for details.
 }
 \description{
 Given a query, request data from the FMI API download service and parse the
 XML response to a \code{tbl_df}.
 }
 \seealso{
-\code{fmi_query} for constructing the \code{query} argument
+\code{\link{fmi_query}} for constructing the \code{query} argument
 }
