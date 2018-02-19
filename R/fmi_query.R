@@ -71,7 +71,7 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly"),
 }
 
 
-fmi_xml_url <- function(stored_query, api_key = getOption("fmi.api_key"))
+fmi_xml_url <- function(stored_query, api_key = getOption("fmir.api_key"))
 {
   if (is.null(api_key)) {
     warning("missing api key: you must supply `api_key` or set your ",
