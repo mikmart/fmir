@@ -12,7 +12,7 @@ Description: This package provides R functions for easily accessing up to date,
     Meteorological Institute. See https://en.ilmatieteenlaitos.fi/open-data for
     details.
 URL: https://github.com/mikmart/fmir
-License: GPL-3
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -27,4 +27,4 @@ Imports:
   xml2 (>= 1.0.0)
 Suggests:
   tidyverse
-RoxygenNote: 6.0.0
+RoxygenNote: 6.0.1
