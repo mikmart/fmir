@@ -68,11 +68,13 @@ fmi_query_params <- function(x)
 }
 
 
-#' Set your FMI API key
+#' Set or get your FMI API key
 #'
 #' Use \code{fmi_set_key} to save your personal API key in \code{options} for
 #'   the duration of the R session so that it doesn't have to be manually
-#'   specified each time you create a new query.
+#'   specified each time you create a new query. \code{fmi_get_key} is a
+#'   convenience wrapper around \code{getOptions} so that you don't have to
+#'   remember what the name of the option is to get your key.
 #'
 #' @param x A length 1 character vector containing your personal FMI API
 #'   key required to access the download service.
@@ -82,6 +84,13 @@ fmi_query_params <- function(x)
 fmi_set_key <- function(x)
 {
   options(fmir.api_key = validate_api_key(x))
+}
+
+#' @export
+#' @rdname fmi_set_key
+fmi_get_key <- function()
+{
+  getOptions("fmir.api_key")
 }
 
 validate_api_key <- function(x)

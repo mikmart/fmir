@@ -37,6 +37,9 @@ Common parameters include:
     E.g. \code{"Helsinki"}, \code{"Oulu"}}
 }
 }
+\examples{
+fmi_query("real-time", place = "Helsinki", api_key = "dummy")
+}
 \seealso{
 \code{\link{fmi_set_key}} for setting the API key for your session.
 }
