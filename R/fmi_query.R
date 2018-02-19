@@ -114,7 +114,7 @@ validate_api_key <- function(x)
   }
 
   if (is.na(x))
-    stop("The API key must not be missing (NA)", call.)
+    stop("The API key must not be missing (NA)", call. = FALSE)
 
   if (!is.character(x) || length(x) != 1) {
     msg <- paste0(
