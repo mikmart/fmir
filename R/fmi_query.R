@@ -90,7 +90,7 @@ fmi_set_key <- function(x)
 #' @rdname fmi_set_key
 fmi_get_key <- function()
 {
-  getOptions("fmir.api_key")
+  getOption("fmir.api_key")
 }
 
 validate_api_key <- function(x)
