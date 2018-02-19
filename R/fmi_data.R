@@ -12,14 +12,14 @@
 #'
 #' @seealso \code{\link{fmi_query}} for constructing the \code{query} argument
 #' @export
-fmi_data <- function(query)
+fmi_data <- function(query, auto_spread = TRUE)
 {
   xml <- xml2::read_xml(query)
 
   tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
   
-  if ("ParameterName" %in% names(tbl))
+  if (auto_spread && "ParameterName" %in% names(tbl))
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
 
   nm <- tolower(names(tbl))
