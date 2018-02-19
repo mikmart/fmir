@@ -17,6 +17,8 @@ fmi_data <- function(query)
   xml <- xml2::read_xml(query)
 
   tbl <- fmi_xml_to_tbl(xml)
+  tbl <- tibble::as_tibble(tbl)
+  
   if ("ParameterName" %in% names(tbl))
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
 
