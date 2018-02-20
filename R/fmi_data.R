@@ -30,7 +30,6 @@ fmi_data <- function(query, auto_spread = TRUE)
 
 fmi_xml_to_df <- function(xml)
 {
-  stopifnot(length(xml) == 1)
   vars <- purrr::set_names(fmi_xml_vars(xml))
   purrr::map_df(vars, fmi_xml_vals, xml = xml)
 }
