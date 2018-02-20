@@ -16,11 +16,8 @@ fmi_format_date <- function(x)
 #'
 #' @param x list
 #' @value named character vector
-#' @importFrom purrr %||%
 squash_list <- function(x) {
   x <- purrr::map_if(x, purrr::is_bare_list, squash_list)
-
-  nm <- names(x) %||% ""
   nm <- rep(names(x), lengths(x))
 
   x <- purrr::map(x, as.character)
