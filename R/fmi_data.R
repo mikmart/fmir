@@ -35,10 +35,10 @@ fmi_xml_vars <- function(xml) {
   purrr::map_chr(xml2::xml_children(first_element), xml2::xml_name)
 }
 
-fmi_xml_vals <- function(xml, var, parser = readr::parse_guess, ...) {
+fmi_xml_vals <- function(xml, var, ...) {
   var_tag <- paste0("//BsWfs:", var)
   xml_var <- xml2::xml_find_all(xml, var_tag)
-  parser(xml2::xml_text(xml_var), ...)
+  readr::parse_guess(xml2::xml_text(xml_var), ...)
 }
 
 validate_query <- function(x) {
