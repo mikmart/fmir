@@ -3,6 +3,9 @@ context("Query parameters")
 test_that("unnamed query parameters throw error", {
   expect_error(fmi_query_params(1), "must be named")
   expect_error(fmi_query_params(a = 1, 2), "must be named")
+
+  # unless there aren't any
+  expect_equal(fmi_query_params(), character())
 })
 
 test_that("query parameters are concatenated correctly", {
