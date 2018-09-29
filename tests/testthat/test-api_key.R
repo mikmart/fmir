@@ -7,8 +7,8 @@ test_that("null API key warns and returns dummy", {
 })
 
 test_that("non-null API key validation works", {
-  expect_error(validate_api_key(1))
-  expect_error(validate_api_key(mtcars))
-  expect_error(validate_api_key(letters))
-  expect_error(validate_api_key(NA_character_))
+  expect_error(validate_api_key(letters), "must have length 1")
+  expect_error(validate_api_key(letters), "not length 26")
+  expect_error(validate_api_key(1), "must be a character")
+  expect_error(validate_api_key(NA_character_), "must not be missing")
 })

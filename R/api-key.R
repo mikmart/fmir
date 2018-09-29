@@ -26,13 +26,13 @@ fmi_get_key <- function() {
 
 validate_api_key <- function(x) {
   if (is.null(x)) {
-    msg <- paste0(
+    warning(
       "API key not found, using dummy key instead. ",
       "The query will not be valid.\n",
       "  Did you know that you can use `fmi_set_key()` ",
-      "to remember your key for the session?"
+      "to remember your key for the session?",
+      call. = FALSE
     )
-    warning(msg, call. = FALSE)
     return("insert-your-apikey-here")
   }
 
@@ -42,7 +42,7 @@ validate_api_key <- function(x) {
   }
 
   if (is.na(x)) {
-    stop("The API key must not be missing (NA)", call. = FALSE)
+    stop("The API key must not be missing (NA).", call. = FALSE)
   }
 
   if (!is.character(x)) {
