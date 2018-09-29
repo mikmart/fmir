@@ -7,13 +7,13 @@
 fmi_data(query)
 }
 \arguments{
-\item{query}{a length 1 character vector containing the URL used to request
-data from the FMI API download service}
+\item{query}{a character vector containing the URL used to request data from
+the FMI API download service}
 }
 \value{
-A \code{tbl_df} containing the requested data. Both the number and
-names of columns depend on the type and format of the query. See
-\code{\link[=fmi_query]{fmi_query()}} for details.
+A \code{tbl_df} containing the requested data. Both the number and names
+of columns depend on the type and format of the query. See \code{\link[=fmi_query]{fmi_query()}}
+for details.
 }
 \description{
 Given a query, request data from the FMI API download service and parse the
