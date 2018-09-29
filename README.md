@@ -14,9 +14,10 @@ Institute](https://en.ilmatieteenlaitos.fi). Key features include:
   - Download machine readable XML weather data from the API
   - Parse the XML data to a regular data frame
 
-FMI provides data in several different formats in their API, implemented
-using OGC Web Feature Service (WFS). Currently the only format supported
-by `fmir` is the “simple” format.
+FMI provides data in [several different
+formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services)
+in their API, implemented using OGC Web Feature Service (WFS). Currently
+the only format supported by `fmir` is the “simple” format.
 
 In order to access the download services of the FMI open data API,
 you’ll need to obtain an API key by registering with the Finnish
@@ -51,7 +52,9 @@ fmi_set_key("insert-your-apikey-here")
 ```
 
 Once your key is set, you can construct queries to the API with
-`fmi_query()`and then execute the queries with `fmi_data()`:
+`fmi_query()`and then execute the queries with `fmi_data()`. A default
+query with only a `place` parameter will return observations with a
+10-minute interval for the past 24 hours:
 
 ``` r
 # generate a query url with fmi_query
@@ -63,12 +66,12 @@ head(weather)
 #> # A tibble: 6 x 13
 #>   location   time                p_sea  r_1h    rh ri_10min snow_aws   t2m
 #>   <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl> <dbl>
-#> 1 65.00639 ~ 2018-09-29 02:00:00 1012.   NaN    92      NaN      NaN   2  
-#> 2 65.00639 ~ 2018-09-29 02:10:00 1012.   NaN    91      NaN      NaN   1.8
-#> 3 65.00639 ~ 2018-09-29 02:20:00 1012.   NaN    90      NaN      NaN   1.8
-#> 4 65.00639 ~ 2018-09-29 02:30:00 1012.   NaN    91      NaN      NaN   1.8
-#> 5 65.00639 ~ 2018-09-29 02:40:00 1012.   NaN    92      NaN      NaN   1.8
-#> 6 65.00639 ~ 2018-09-29 02:50:00 1012.   NaN    92      NaN      NaN   1.6
+#> 1 65.00639 ~ 2018-09-29 03:50:00 1012.   NaN    95      NaN      NaN   0.3
+#> 2 65.00639 ~ 2018-09-29 04:00:00 1012.   NaN    95      NaN      NaN   0.2
+#> 3 65.00639 ~ 2018-09-29 04:10:00 1011.   NaN    95      NaN      NaN   0.1
+#> 4 65.00639 ~ 2018-09-29 04:20:00 1011.   NaN    95      NaN      NaN  -0.1
+#> 5 65.00639 ~ 2018-09-29 04:30:00 1011.   NaN    96      NaN      NaN   0.1
+#> 6 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
 #> # ... with 5 more variables: td <dbl>, vis <dbl>, wd_10min <dbl>,
 #> #   wg_10min <dbl>, ws_10min <dbl>
 

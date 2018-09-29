@@ -22,7 +22,7 @@ The `fmir` package aims to provide functions for easily accessing up to date, op
 * Download machine readable XML weather data from the API
 * Parse the XML data to a regular data frame
 
-FMI provides data in several different formats in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by `fmir` is the "simple" format.
+FMI provides data in [several different formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services) in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by `fmir` is the "simple" format.
 
 In order to access the download services of the FMI open data API, you'll need to obtain an API key by registering with the Finnish Meteorological Institute. See [FMI's open data manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
@@ -52,7 +52,7 @@ library(fmir)
 library(ggplot2)
 ```
 
-Once your key is set, you can construct queries to the API with `fmi_query()`and then execute the queries with `fmi_data()`:
+Once your key is set, you can construct queries to the API with `fmi_query()`and then execute the queries with `fmi_data()`. A default query with only a `place` parameter will return observations with a 10-minute interval for the past 24 hours:
 
 ```{r example-plot}
 # generate a query url with fmi_query
