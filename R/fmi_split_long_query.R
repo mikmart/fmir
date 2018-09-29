@@ -55,12 +55,14 @@ query_split <- function(query) {
   timepoints <- purrr::map2(start, end, seq, by = width)
   timepoints <- purrr::map2(timepoints, end, ~ unique(c(.x, .y)))
 
-  new <- purrr::map(timepoints, timepoints2intervals)
-  new <- purrr::modify_depth(new, 2, fmi_format_date)
-  query <- rep(query, purrr::map_int(new, ~ length(.x$start)))
+  int <- purrr::map(timepoints, timepoints2intervals)
+  int <- purrr::modify_depth(int, 2, fmi_format_date)
+  n_splits <- purrr::map_int(int, ~ length(.x$start))
 
-  new <- purrr::transpose(new)
-  new <- purrr::map(new, purrr::flatten_chr)
+  int <- purrr::transpose(int)
+  new <- purrr::map(int, purrr::flatten_chr)
+
+  query <- rep(query, n_splits)
 
   query_param(query, "starttime") <- new$start
   query_param(query, "endtime") <- new$end
