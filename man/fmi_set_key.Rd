@@ -15,12 +15,12 @@ key required to access the download service.}
 }
 \description{
 Use \code{fmi_set_key} to save your personal API key in \code{options} for
-  the duration of the R session so that it doesn't have to be manually
-  specified each time you create a new query. \code{fmi_get_key} is a
-  convenience wrapper around \code{getOptions} so that you don't have to
-  remember what the name of the option is to get your key.
+the duration of the R session so that it doesn't have to be manually
+specified each time you create a new query. \code{fmi_get_key} is a
+convenience wrapper around \code{getOptions} so that you don't have to
+remember what the name of the option is to get your key.
 }
 \seealso{
 \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
-  for obtaining a new API key.
+for obtaining a new API key.
 }

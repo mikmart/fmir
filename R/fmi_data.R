@@ -1,18 +1,18 @@
 #' Download weather data from the FMI API
 #'
 #' Given a query, request data from the FMI API download service and parse the
-#' XML response to a \code{tbl_df}.
+#' XML response to a `tbl_df`.
 #'
 #' @param query a length 1 character vector containing the URL used to request
 #'   data from the FMI API download service
 #' @param auto_spread logical. Should data in long format be automatically
 #'   transformed to wide format?
 #'
-#' @return A \code{tbl_df} containing the requested data. Both the number and
+#' @return A `tbl_df` containing the requested data. Both the number and
 #'   names of columns depend on the type and format of the query. See
-#'   \code{\link{fmi_query}} for details.
+#'   [fmi_query()] for details.
 #'
-#' @seealso \code{\link{fmi_query}} for constructing the \code{query} argument
+#' @seealso [fmi_query()] for constructing the `query` argument
 #' @export
 fmi_data <- function(query, auto_spread = TRUE)
 {

@@ -15,13 +15,13 @@ transformed to wide format?}
 }
 \value{
 A \code{tbl_df} containing the requested data. Both the number and
-  names of columns depend on the type and format of the query. See
-  \code{\link{fmi_query}} for details.
+names of columns depend on the type and format of the query. See
+\code{\link[=fmi_query]{fmi_query()}} for details.
 }
 \description{
 Given a query, request data from the FMI API download service and parse the
 XML response to a \code{tbl_df}.
 }
 \seealso{
-\code{\link{fmi_query}} for constructing the \code{query} argument
+\code{\link[=fmi_query]{fmi_query()}} for constructing the \code{query} argument
 }

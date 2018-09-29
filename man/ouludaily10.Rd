@@ -6,21 +6,21 @@
 \title{Daily weather in Oulu, Finland, in 2010-2017}
 \format{A data frame with 2922 rows and 8 variables:
 \describe{
-  \item{location}{coordinates of the observation station}
-  \item{time}{date of observation}
-  \item{rrday}{precipitation rate}
-  \item{snow}{snow depth}
-  \item{tday}{average temperature, degrees Celcius}
-  \item{tg_pt12h_min}{?}
-  \item{tmax}{maximum temperature, degrees Celcius}
-  \item{tmin}{minimum temperature, degrees Celcius}
+\item{location}{coordinates of the observation station}
+\item{time}{date of observation}
+\item{rrday}{precipitation rate}
+\item{snow}{snow depth}
+\item{tday}{average temperature, degrees Celcius}
+\item{tg_pt12h_min}{?}
+\item{tmax}{maximum temperature, degrees Celcius}
+\item{tmin}{minimum temperature, degrees Celcius}
 }}
 \usage{
 ouludaily10
 }
 \description{
 A dataset downloaded from the Finnish Meteorological Institute's open data
-API using `fmir`. Contains daily simple weather observations from Oulu,
+API using \code{fmir}. Contains daily simple weather observations from Oulu,
 Finland, covering the years 2010 to 2017.
 }
 \keyword{datasets}

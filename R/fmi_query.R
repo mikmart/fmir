@@ -8,7 +8,7 @@
 #'   API key required to access the download service.
 #'
 #' @details
-#' The list of possible parameters passed in \code{...} depends on the type and
+#' The list of possible parameters passed in `...` depends on the type and
 #' format of the query being constructed. Query-specific parameters are fully
 #' documented in the \href{http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services}{FMI Open Data Manual}.
 #'
@@ -18,11 +18,11 @@
 #'   \item{starttime, endtime}{A date or datetime specifying the start/end of the
 #'     interval to request data for}
 #'   \item{place}{A string specifying the place of measurement in general terms.
-#'     E.g. \code{"Helsinki"}, \code{"Oulu"}}
+#'     E.g. `"Helsinki"`, `"Oulu"`}
 #' }
 #'
 #' @return A length 1 character vector containing the URL for an FMI API query.
-#' @seealso \code{\link{fmi_set_key}} for setting the API key for your session.
+#' @seealso [fmi_set_key()] for setting the API key for your session.
 #' @examples
 #' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
 #' @export
@@ -77,10 +77,10 @@ fmi_query_params <- function(x)
 
 #' Set or get your FMI API key
 #'
-#' Use \code{fmi_set_key} to save your personal API key in \code{options} for
+#' Use `fmi_set_key` to save your personal API key in `options` for
 #'   the duration of the R session so that it doesn't have to be manually
-#'   specified each time you create a new query. \code{fmi_get_key} is a
-#'   convenience wrapper around \code{getOptions} so that you don't have to
+#'   specified each time you create a new query. `fmi_get_key` is a
+#'   convenience wrapper around `getOptions` so that you don't have to
 #'   remember what the name of the option is to get your key.
 #'
 #' @param x A length 1 character vector containing your personal FMI API
