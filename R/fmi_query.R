@@ -28,13 +28,17 @@
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
                       ..., api_key = fmi_get_key()) {
   base_url <- fmi_base_url(type, api_key)
+  params <- fmi_query_params(...)
 
-  dots <- list(...)
-  if (length(dots) == 0) {
+  validate_query(new_query(base_url, params))
+}
+
+new_query <- function(base_url, params) {
+  if (length(params) == 0) {
     return(base_url)
   }
 
-  paste(base_url, fmi_query_params(dots), sep = "&")
+  paste(base_url, params, sep = "&")
 }
 
 fmi_base_url <- function(type, api_key = fmi_get_key()) {
@@ -50,7 +54,8 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly")) {
   paste0("fmi::observations::weather", type, "::simple")
 }
 
-fmi_query_params <- function(x) {
+fmi_query_params <- function(...) {
+  x <- list(...)
   nm <- names(x)
 
   if (is.null(nm) || any(nm == "")) {
