@@ -54,7 +54,7 @@ library(fmir)
 library(ggplot2)
 ```
 
-Once your key is set, you can construct queries to the API with `fmi_query()`and then execute the queries with `fmi_data()`. A default query with only a `place` parameter will return observations with a 10-minute interval for the past 24 hours:
+Once your key is set, you can construct queries to the API with `fmi_query()` and then execute the queries with `fmi_data()`. A default query with only a `place` parameter will return observations with a 10-minute interval for the past 24 hours:
 
 ```{r basic-usage}
 # generate a query url with fmi_query
