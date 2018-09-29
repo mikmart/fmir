@@ -56,8 +56,11 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly")) {
 
 fmi_query_params <- function(...) {
   x <- vctrs::vec_recycle(...)
-  nm <- names(x)
+  if (length(x) == 0) {
+    return(character())
+  }
 
+  nm <- names(x)
   if (is.null(nm) || any(nm == "")) {
     stop("All query parameters must be named", call. = FALSE)
   }
