@@ -26,7 +26,8 @@ Imports:
     xml2 (>= 1.0.0),
     janitor (>= 1.1.1),
     vctrs,
-    httr
+    httr,
+    stringr
 Suggests: 
     tidyverse (>= 1.2.1),
     testthat (>= 2.0.0),
