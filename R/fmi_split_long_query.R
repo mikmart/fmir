@@ -56,10 +56,10 @@ query_split <- function(query) {
 
   new <- purrr::map(timepoints, timepoints2intervals)
   new <- purrr::modify_depth(new, 2, fmi_format_date)
+  query <- rep(query, purrr::map_int(new, ~ length(.x$start)))
+
   new <- purrr::transpose(new)
   new <- purrr::map(new, purrr::flatten_chr)
-
-  query <- rep(query, length(new$start))
 
   query_param(query, "starttime") <- new$start
   query_param(query, "endtime") <- new$end
