@@ -60,11 +60,6 @@ fmi_query_params <- function(...) {
     return(character())
   }
 
-  nm <- names(x)
-  if (is.null(nm) || any(nm == "")) {
-    stop("All query parameters must be named", call. = FALSE)
-  }
-
   x <- purrr::map_if(x, is_dateish, fmi_format_date)
   purrr::pmap_chr(x, combine_params)
 }
@@ -72,7 +67,12 @@ fmi_query_params <- function(...) {
 combine_params <- function(...) {
   x <- list(...)
   nm <- names(x)
-  paste(collapse = "&", paste(nm, x, sep = "="))
+
+  if (is.null(nm) || any(nm == "")) {
+    stop("All query parameters must be named", call. = FALSE)
+  }
+
+  paste(collapse = "&", paste0(nm, "=", x))
 }
 
 validate_query <- function(x) {
