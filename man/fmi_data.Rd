@@ -4,14 +4,11 @@
 \alias{fmi_data}
 \title{Download weather data from the FMI API}
 \usage{
-fmi_data(query, auto_spread = TRUE)
+fmi_data(query)
 }
 \arguments{
 \item{query}{a length 1 character vector containing the URL used to request
 data from the FMI API download service}
-
-\item{auto_spread}{logical. Should data in long format be automatically
-transformed to wide format?}
 }
 \value{
 A \code{tbl_df} containing the requested data. Both the number and

@@ -5,8 +5,6 @@
 #'
 #' @param query a length 1 character vector containing the URL used to request
 #'   data from the FMI API download service
-#' @param auto_spread logical. Should data in long format be automatically
-#'   transformed to wide format?
 #'
 #' @return A `tbl_df` containing the requested data. Both the number and
 #'   names of columns depend on the type and format of the query. See
@@ -14,14 +12,14 @@
 #'
 #' @seealso [fmi_query()] for constructing the `query` argument
 #' @export
-fmi_data <- function(query, auto_spread = TRUE)
+fmi_data <- function(query)
 {
   xml <- xml2::read_xml(validate_query(query))
 
   tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
 
-  if (auto_spread && "ParameterName" %in% names(tbl))
+  if ("ParameterName" %in% names(tbl))
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
 
   nm <- tolower(names(tbl))
