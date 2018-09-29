@@ -40,29 +40,3 @@ fmi_xml_vals <- function(xml, var, ...) {
   xml_var <- xml2::xml_find_all(xml, var_tag)
   readr::parse_guess(xml2::xml_text(xml_var), ...)
 }
-
-validate_query <- function(x) {
-  if (!is.character(x)) {
-    msg <- paste0(
-      "Query must be a character vector, not a ",
-      typeof(x), if (is.atomic(x)) " vector"
-    )
-
-    stop(msg, call. = FALSE)
-  }
-
-  if (length(x) != 1) {
-    msg <- paste0("Query must have length 1, not ", length(x))
-
-    if (length(x) > 1) {
-      msg <- paste0(
-        msg, "\nDid your query get split into multiple",
-        "queries automatically by `fmi_query()`?"
-      )
-    }
-
-    stop(msg, call. = FALSE)
-  }
-
-  x
-}

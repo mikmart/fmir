@@ -72,3 +72,29 @@ fmi_query_params <- function(x) {
   x <- purrr::map_if(x, is_dateish, fmi_format_date)
   paste(collapse = "&", paste(nm, x, sep = "="))
 }
+
+validate_query <- function(x) {
+  if (!is.character(x)) {
+    msg <- paste0(
+      "Query must be a character vector, not a ",
+      typeof(x), if (is.atomic(x)) " vector"
+    )
+
+    stop(msg, call. = FALSE)
+  }
+
+  if (length(x) != 1) {
+    msg <- paste0("Query must have length 1, not ", length(x))
+
+    if (length(x) > 1) {
+      msg <- paste0(
+        msg, "\nDid your query get split into multiple",
+        "queries automatically by `fmi_query()`?"
+      )
+    }
+
+    stop(msg, call. = FALSE)
+  }
+
+  x
+}
