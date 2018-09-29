@@ -68,10 +68,6 @@ query_split <- function(query) {
 }
 
 timepoints2intervals <- function(x) {
-  if (length(x) < 3) {
-    return(x)
-  }
-
   s <- head(x, -1)
   e <- tail(x, -1)
   e <- c(head(e, -1) - 1, tail(e, 1))
