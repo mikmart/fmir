@@ -29,3 +29,10 @@ test_that("can extract parameters from queries", {
   q <- fmi_query(place = c("Oulu", "Espoo"))
   expect_equal(query_param(q, "place"), c("Oulu", "Espoo"))
 })
+
+test_that("can replace query parameters", {
+  q <- fmi_query(place = "Oulu")
+  query_param(q, "place") <- "Espoo"
+
+  expect_equal(query_param(q, "place"), "Espoo")
+})
