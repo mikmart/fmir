@@ -37,9 +37,10 @@ query_type <- function(query) {
 }
 
 query_length_limit <- function(query_type) {
-  hours <- c("real-time" = 168, "daily" = 8928, "monthly" = 87600)
-  unname(hours[query_type]) * 3600 # limit in seconds
+  unname(query_max_hours[query_type]) * 3600 # limit in seconds
 }
+
+query_max_hours <- c("real-time" = 168, "daily" = 8928, "monthly" = 87600)
 
 query_split <- function(query) {
   start <- query_param(query, "starttime")
