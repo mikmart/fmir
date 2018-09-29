@@ -8,11 +8,14 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
-# fmir
+fmir
+===
+[![Travis build status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir)
+
 The `fmir` package aims to provide functions for easily accessing up to date, open weather data, made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi). Key features include:
 
 * Use simple R syntax to create queries for the FMI API
@@ -33,14 +36,25 @@ devtools::install_github("mikmart/fmir")
 ```
 
 ## Usage
-Basic workflow with `fmir` follows these simple steps:
+
+To get started, set your API key for the session first:
+
 ```{r basic-usage, eval = FALSE}
 library(fmir)
 library(ggplot2)
 
 # set your api key for your session
 fmi_set_key("insert-your-apikey-here")
+```
 
+```{r packages, include = FALSE}
+library(fmir)
+library(ggplot2)
+```
+
+Once your key is set, you can construct queries to the API with `fmi_query()`and then execute the queries with `fmi_data()`:
+
+```{r example-plot}
 # generate a query url with fmi_query
 q <- fmi_query(place = "Oulu")
 
@@ -49,6 +63,5 @@ weather <- fmi_data(q)
 head(weather)
 
 # draw a simple line graph of the recent temperature
-ggplot(weather, aes(time, t2m)) +
-  geom_line()
+ggplot(weather, aes(time, t2m)) + geom_line()
 ```
