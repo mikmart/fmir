@@ -30,10 +30,12 @@ fully documented in the \href{http://en.ilmatieteenlaitos.fi/open-data-manual-fm
 
 Common parameters include:
 
-\describe{ \item{starttime, endtime}{A date or datetime specifying the
-start/end of the interval to request data for} \item{place}{A string
-specifying the place of measurement in general terms. E.g. \code{"Helsinki"},
-\code{"Oulu"}} }
+\describe{
+\item{starttime, endtime}{A date or datetime specifying the
+start/end of the interval to request data for}
+\item{place}{A string specifying the place of measurement in general
+terms. E.g. \code{"Helsinki"}, \code{"Oulu"}}
+}
 }
 \examples{
 fmi_query("real-time", place = "Helsinki", api_key = "dummy")

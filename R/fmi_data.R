@@ -13,6 +13,7 @@
 #' @seealso [fmi_query()] for constructing the `query` argument
 #' @export
 fmi_data <- function(query) {
+  query <- fmi_split_long_query(query)
   if (length(query) > 1) {
     return(purrr::map_df(query, fmi_data))
   }
