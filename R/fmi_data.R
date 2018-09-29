@@ -13,12 +13,14 @@
 #' @seealso [fmi_query()] for constructing the `query` argument
 #' @export
 fmi_data <- function(query) {
+  query <- validate_query(query)
   query <- fmi_split_long_query(query)
+
   if (length(query) > 1) {
     return(purrr::map_df(query, fmi_data))
   }
 
-  xml <- xml2::read_xml(validate_query(query))
+  xml <- xml2::read_xml(query)
 
   tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
