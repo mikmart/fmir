@@ -25,7 +25,8 @@ Imports:
     tidyr (>= 0.6.0),
     xml2 (>= 1.0.0),
     janitor (>= 1.1.1),
-    vctrs
+    vctrs,
+    httr
 Suggests: 
     tidyverse (>= 1.2.1),
     testthat (>= 2.0.0),
@@ -34,5 +35,5 @@ Suggests:
     covr
 RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)
-Remotes:  
+Remotes: 
     r-lib/vctrs
