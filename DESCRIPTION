@@ -24,7 +24,8 @@ Imports:
     tibble (>= 1.2.0),
     tidyr (>= 0.6.0),
     xml2 (>= 1.0.0),
-    stringr
+    stringr,
+    janitor
 Suggests: 
     tidyverse,
     testthat,

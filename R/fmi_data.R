@@ -22,8 +22,7 @@ fmi_data <- function(query) {
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
   }
 
-  nm <- tolower(names(tbl))
-  purrr::set_names(tbl, nm)
+  janitor::clean_names(tbl)
 }
 
 fmi_xml_to_df <- function(xml) {
