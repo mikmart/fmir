@@ -17,7 +17,7 @@ fmi_data <- function(query) {
   query <- fmi_split_long_query(query)
 
   if (length(query) > 1) {
-    return(purrr::map_df(query, fmi_data))
+    return(purrr::map_df(query, delay_by(100, fmi_data)))
   }
 
   xml <- xml2::read_xml(query)

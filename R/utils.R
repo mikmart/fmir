@@ -7,6 +7,15 @@ fmi_format_date <- function(x) {
   format(x, format = "%Y-%m-%dT%H:%M:%SZ")
 }
 
+delay_by <- function(ms, f) {
+  force(f)
+  force(ms)
+  function(...) {
+    Sys.sleep(ms / 1000)
+    f(...)
+  }
+}
+
 #' Turn a list into a character vector
 #'
 #' Use to turn a (possibly nested) list to a character vector. Names for the
