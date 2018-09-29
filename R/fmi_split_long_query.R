@@ -23,10 +23,10 @@ query_length <- function(query) {
   replace(d, is.na(d), -1) # if NA => start missing => not too long
 }
 
-query_param <- function(query, name) {
+query_param <- function(query, param) {
   url <- purrr::map(query, httr::parse_url)
-  param <- purrr::map(url, c("query", name))
-  param <- purrr::modify_if(param, is.null, ~ NA)
+  param <- purrr::map(url, c("query", param))
+  param <- purrr::map_if(param, is.null, ~ NA)
   purrr::flatten_chr(param)
 }
 
