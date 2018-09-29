@@ -1,4 +1,3 @@
-library(fmir)
 context("Query parameters")
 
 test_that("unnamed query parameters throw error", {

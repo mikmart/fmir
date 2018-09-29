@@ -1,4 +1,3 @@
-library(fmir)
 context("API key validation")
 
 test_that("null API key warns and returns dummy", {
