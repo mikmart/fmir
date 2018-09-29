@@ -7,10 +7,10 @@
 status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-The `fmir` package provides tools for easily accessing up to date, open
-weather data from Finland. The data are made available by the [Finnish
-Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are
-licensed under
+The **fmir** package provides tools for easily accessing up to date,
+open weather data from Finland. The data are made available by the
+[Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and
+are licensed under
 [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). Key features
 of the package include:
 
@@ -21,21 +21,22 @@ of the package include:
 FMI provides data in [several different
 formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services)
 in their API, implemented using OGC Web Feature Service (WFS). Currently
-the only format supported by `fmir` is the “simple” format.
+the only format supported by **fmir** is the “simple” format.
 
 In order to access the download services of the FMI open data API,
-you’ll need to obtain an API key by registering with the Finnish
-Meteorological Institute. See [FMI’s open data
+you’ll need to obtain an API key by
+[registering](https://ilmatieteenlaitos.fi/rekisteroityminen-avoimen-datan-kayttajaksi)
+with the Finnish Meteorological Institute. See [FMI’s open data
 manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
-**Note:** `fmir` is still very early in development. Basic functionality
-is available, but several issues remain: documentation is scarce, and
-none of the implementation details or even function names can be
-considered stable.
+**Note:** **fmir** is still very early in development. Basic
+functionality is available, but several issues remain: documentation is
+scarce, and none of the implementation details or even function names
+can be considered stable.
 
 ## Installation
 
-At the moment, the easiest way to install `fmir` is from github with
+At the moment, the easiest way to install **fmir** is from github with
 `devtools`:
 
 ``` r
@@ -45,7 +46,7 @@ devtools::install_github("mikmart/fmir")
 
 ## Usage
 
-To get started, set your API key for the session first:
+To get started, set your API key for the session with `fmi_set_key()`:
 
 ``` r
 library(fmir)
