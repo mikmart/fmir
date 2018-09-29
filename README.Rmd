@@ -14,12 +14,13 @@ knitr::opts_chunk$set(
 
 fmir
 ===
-[![Travis build status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir)
+[![Travis build status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-The `fmir` package aims to provide functions for easily accessing up to date, open weather data, made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi). Key features include:
+
+The `fmir` package provides tools for easily accessing up to date, open weather data from Finland. The data are made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). Key features of the package include:
 
 * Use simple R syntax to create queries for the FMI API
-* Download machine readable XML weather data from the API
+* Download XML weather data from the API
 * Parse the XML data to a regular data frame
 
 FMI provides data in [several different formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services) in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by `fmir` is the "simple" format.
@@ -39,7 +40,7 @@ devtools::install_github("mikmart/fmir")
 
 To get started, set your API key for the session first:
 
-```{r basic-usage, eval = FALSE}
+```{r set-key, eval = FALSE}
 library(fmir)
 library(ggplot2)
 
@@ -54,7 +55,7 @@ library(ggplot2)
 
 Once your key is set, you can construct queries to the API with `fmi_query()`and then execute the queries with `fmi_data()`. A default query with only a `place` parameter will return observations with a 10-minute interval for the past 24 hours:
 
-```{r example-plot}
+```{r basic-usage}
 # generate a query url with fmi_query
 q <- fmi_query(place = "Oulu")
 

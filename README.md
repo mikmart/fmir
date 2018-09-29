@@ -5,13 +5,17 @@
 
 [![Travis build
 status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-The `fmir` package aims to provide functions for easily accessing up to
-date, open weather data, made available by the [Finnish Meteorological
-Institute](https://en.ilmatieteenlaitos.fi). Key features include:
+The `fmir` package provides tools for easily accessing up to date, open
+weather data from Finland. The data are made available by the [Finnish
+Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are
+licensed under
+[CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). Key features
+of the package include:
 
   - Use simple R syntax to create queries for the FMI API
-  - Download machine readable XML weather data from the API
+  - Download XML weather data from the API
   - Parse the XML data to a regular data frame
 
 FMI provides data in [several different
@@ -66,12 +70,12 @@ head(weather)
 #> # A tibble: 6 x 13
 #>   location   time                p_sea  r_1h    rh ri_10min snow_aws   t2m
 #>   <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl> <dbl>
-#> 1 65.00639 ~ 2018-09-29 03:50:00 1012.   NaN    95      NaN      NaN   0.3
-#> 2 65.00639 ~ 2018-09-29 04:00:00 1012.   NaN    95      NaN      NaN   0.2
-#> 3 65.00639 ~ 2018-09-29 04:10:00 1011.   NaN    95      NaN      NaN   0.1
-#> 4 65.00639 ~ 2018-09-29 04:20:00 1011.   NaN    95      NaN      NaN  -0.1
-#> 5 65.00639 ~ 2018-09-29 04:30:00 1011.   NaN    96      NaN      NaN   0.1
-#> 6 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
+#> 1 65.00639 ~ 2018-09-29 04:10:00 1011.   NaN    95      NaN      NaN   0.1
+#> 2 65.00639 ~ 2018-09-29 04:20:00 1011.   NaN    95      NaN      NaN  -0.1
+#> 3 65.00639 ~ 2018-09-29 04:30:00 1011.   NaN    96      NaN      NaN   0.1
+#> 4 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
+#> 5 65.00639 ~ 2018-09-29 04:50:00 1011.   NaN    96      NaN      NaN   0  
+#> 6 65.00639 ~ 2018-09-29 05:00:00 1011.   NaN    96      NaN      NaN   0  
 #> # ... with 5 more variables: td <dbl>, vis <dbl>, wd_10min <dbl>,
 #> #   wg_10min <dbl>, ws_10min <dbl>
 
@@ -79,4 +83,4 @@ head(weather)
 ggplot(weather, aes(time, t2m)) + geom_line()
 ```
 
-![](man/figures/README-example-plot-1.png)<!-- -->
+![](man/figures/README-basic-usage-1.png)<!-- -->
