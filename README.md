@@ -5,6 +5,8 @@
 
 [![Travis build
 status](https://travis-ci.com/mikmart/fmir.svg?branch=master)](https://travis-ci.com/mikmart/fmir)
+[![Coverage
+status](https://codecov.io/gh/mikmart/fmir/branch/master/graph/badge.svg)](https://codecov.io/github/mikmart/fmir?branch=master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 The **fmir** package provides tools for easily accessing up to date,
@@ -71,12 +73,12 @@ head(weather)
 #> # A tibble: 6 x 13
 #>   location   time                p_sea  r_1h    rh ri_10min snow_aws   t2m
 #>   <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl> <dbl>
-#> 1 65.00639 ~ 2018-09-29 04:30:00 1011.   NaN    96      NaN      NaN   0.1
-#> 2 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
-#> 3 65.00639 ~ 2018-09-29 04:50:00 1011.   NaN    96      NaN      NaN   0  
-#> 4 65.00639 ~ 2018-09-29 05:00:00 1011.   NaN    96      NaN      NaN   0  
-#> 5 65.00639 ~ 2018-09-29 05:10:00 1011.   NaN    96      NaN      NaN   0  
-#> 6 65.00639 ~ 2018-09-29 05:20:00 1011.   NaN    96      NaN      NaN  -0.2
+#> 1 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
+#> 2 65.00639 ~ 2018-09-29 04:50:00 1011.   NaN    96      NaN      NaN   0  
+#> 3 65.00639 ~ 2018-09-29 05:00:00 1011.   NaN    96      NaN      NaN   0  
+#> 4 65.00639 ~ 2018-09-29 05:10:00 1011.   NaN    96      NaN      NaN   0  
+#> 5 65.00639 ~ 2018-09-29 05:20:00 1011.   NaN    96      NaN      NaN  -0.2
+#> 6 65.00639 ~ 2018-09-29 05:30:00 1011.   NaN    96      NaN      NaN  -0.2
 #> # ... with 5 more variables: td <dbl>, vis <dbl>, wd_10min <dbl>,
 #> #   wg_10min <dbl>, ws_10min <dbl>
 
