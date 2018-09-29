@@ -13,7 +13,8 @@ fmi_format_date <- function(x) {
 #' output vector are taken from the names of the top level list.
 #'
 #' @param x list
-#' @value named character vector
+#' @return named character vector
+#' @noRd
 squash_list <- function(x) {
   x <- purrr::map_if(x, purrr::is_bare_list, squash_list)
   nm <- rep(names(x), lengths(x))
