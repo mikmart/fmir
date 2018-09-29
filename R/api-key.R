@@ -36,16 +36,18 @@ validate_api_key <- function(x) {
     return("insert-your-apikey-here")
   }
 
+  if (length(x) != 1) {
+    n <- length(x)
+    stop("The API key must have length 1, not length ", n, ".", call. = FALSE)
+  }
+
   if (is.na(x)) {
     stop("The API key must not be missing (NA)", call. = FALSE)
   }
 
-  if (!is.character(x) || length(x) != 1) {
-    msg <- paste0(
-      "The API key must be a character vector of length 1, not a ",
-      typeof(x), if (is.atomic(x)) " vector", " of length ", length(x)
-    )
-    stop(msg, call. = FALSE)
+  if (!is.character(x)) {
+    type <- paste0(typeof(x), if (is.atomic(x)) " vector", ".")
+    stop("The API key must be a character vector, not a ", type, call. = FALSE)
   }
 
   x

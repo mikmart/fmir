@@ -2,8 +2,8 @@ library(fmir)
 context("API key validation")
 
 test_that("null API key warns and returns dummy", {
-  expect_warning(validate_api_key(NULL))
-  expect_is(validate_api_key(NULL), "character")
+  expect_warning(validate_api_key(NULL), "not found")
+  expect_is(suppressWarnings(validate_api_key(NULL)), "character")
 })
 
 test_that("non-null API key validation works", {
