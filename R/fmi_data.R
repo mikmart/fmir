@@ -29,7 +29,10 @@ fmi_data <- function(query) {
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
   }
 
-  janitor::clean_names(tbl)
+  tbl <- janitor::clean_names(tbl)
+
+  place <- query_param(query, "place")
+  prepend_column(tbl, place = place)
 }
 
 fmi_xml_to_df <- function(xml) {

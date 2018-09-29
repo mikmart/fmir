@@ -16,6 +16,10 @@ delay_by <- function(ms, f) {
   }
 }
 
+prepend_column <- function(.data, ...) {
+  tibble::add_column(.data, ..., .before = 1L)
+}
+
 #' Turn a list into a character vector
 #'
 #' Use to turn a (possibly nested) list to a character vector. Names for the

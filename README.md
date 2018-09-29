@@ -70,17 +70,17 @@ q <- fmi_query(place = "Oulu")
 # download the data corresponding to your query
 weather <- fmi_data(q)
 head(weather)
-#> # A tibble: 6 x 13
-#>   location   time                p_sea  r_1h    rh ri_10min snow_aws   t2m
-#>   <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl> <dbl>
-#> 1 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
-#> 2 65.00639 ~ 2018-09-29 04:50:00 1011.   NaN    96      NaN      NaN   0  
-#> 3 65.00639 ~ 2018-09-29 05:00:00 1011.   NaN    96      NaN      NaN   0  
-#> 4 65.00639 ~ 2018-09-29 05:10:00 1011.   NaN    96      NaN      NaN   0  
-#> 5 65.00639 ~ 2018-09-29 05:20:00 1011.   NaN    96      NaN      NaN  -0.2
-#> 6 65.00639 ~ 2018-09-29 05:30:00 1011.   NaN    96      NaN      NaN  -0.2
-#> # ... with 5 more variables: td <dbl>, vis <dbl>, wd_10min <dbl>,
-#> #   wg_10min <dbl>, ws_10min <dbl>
+#> # A tibble: 6 x 14
+#>   place location   time                p_sea  r_1h    rh ri_10min snow_aws
+#>   <chr> <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
+#> 1 Oulu  65.00639 ~ 2018-09-29 10:20:00 1009.   NaN    82      NaN      NaN
+#> 2 Oulu  65.00639 ~ 2018-09-29 10:30:00 1008.   NaN    82      NaN      NaN
+#> 3 Oulu  65.00639 ~ 2018-09-29 10:40:00 1008.   NaN    81      NaN      NaN
+#> 4 Oulu  65.00639 ~ 2018-09-29 10:50:00 1008.   NaN    80      NaN      NaN
+#> 5 Oulu  65.00639 ~ 2018-09-29 11:00:00 1008.   NaN    80      NaN      NaN
+#> 6 Oulu  65.00639 ~ 2018-09-29 11:10:00 1008    NaN    79      NaN      NaN
+#> # ... with 6 more variables: t2m <dbl>, td <dbl>, vis <dbl>,
+#> #   wd_10min <dbl>, wg_10min <dbl>, ws_10min <dbl>
 
 # draw a simple line graph of the recent temperature
 ggplot(weather, aes(time, t2m)) + geom_line()
