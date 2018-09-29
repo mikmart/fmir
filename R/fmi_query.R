@@ -4,13 +4,12 @@
 #'   of the observations to request
 #' @param ... Name-value pairs of length 1 character vectors, used as query
 #'   parameters. See details for possible values.
-#' @param api_key A length 1 character vector containing your personal FMI
-#'   API key required to access the download service.
+#' @inheritParams fmi_set_key
 #'
 #' @details
 #' The list of possible parameters passed in `...` depends on the type and
 #' format of the query being constructed. Query-specific parameters are fully
-#' documented in the \href{http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services}{FMI Open Data Manual}.
+#' documented in the [FMI Open Data Manual](http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services).
 #'
 #' Common parameters include:
 #'
@@ -27,7 +26,7 @@
 #' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
 #' @export
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
-                      ..., api_key = getOption("fmir.api_key")) {
+                      ..., api_key = fmi_get_key()) {
   base_url <- fmi_base_url(type, api_key)
 
   dots <- list(...)
@@ -38,7 +37,7 @@ fmi_query <- function(type = c("real-time", "daily", "monthly"),
   paste(base_url, fmi_query_params(dots), sep = "&")
 }
 
-fmi_base_url <- function(type, api_key = getOption("fmir.api_key")) {
+fmi_base_url <- function(type, api_key = fmi_get_key()) {
   paste0(
     "http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
     "/wfs?request=getFeature&storedquery_id=", fmi_stored_query(type)
@@ -77,25 +76,28 @@ fmi_query_params <- function(x) {
 
 #' Set or get your FMI API key
 #'
-#' Use `fmi_set_key` to save your personal API key in `options` for
-#'   the duration of the R session so that it doesn't have to be manually
-#'   specified each time you create a new query. `fmi_get_key` is a
-#'   convenience wrapper around `getOptions` so that you don't have to
-#'   remember what the name of the option is to get your key.
+#' Use `fmi_set_key()` to save your personal API key in `options` for the
+#' duration of the R session so that it doesn't have to be manually specified
+#' each time you create a new query. Alternatively, you can also set an
+#' environment variable called `FMIR_API_KEY` in your `.Renviron` file to
+#' persistently remember the API key. `fmi_get_key()` gets your API key by
+#' checking the session option first (so you can change the key for your
+#' session) and falls back to checking the environment variable.
 #'
-#' @param x A length 1 character vector containing your personal FMI API
+#' @param api_key A length 1 character vector containing your personal FMI API
 #'   key required to access the download service.
-#' @seealso \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
-#'   for obtaining a new API key.
+#' @seealso \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data
+#'   website} for obtaining a new API key.
 #' @export
-fmi_set_key <- function(x) {
-  options(fmir.api_key = validate_api_key(x))
+fmi_set_key <- function(api_key) {
+  options(fmir.api_key = validate_api_key(api_key))
 }
 
 #' @export
 #' @rdname fmi_set_key
+#' @importFrom purrr %||%
 fmi_get_key <- function() {
-  validate_api_key(getOption("fmir.api_key"))
+  validate_api_key(getOption("fmir.api_key") %||% Sys.getenv("FMIR_API_KEY"))
 }
 
 validate_api_key <- function(x) {

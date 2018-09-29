@@ -5,22 +5,24 @@
 \alias{fmi_get_key}
 \title{Set or get your FMI API key}
 \usage{
-fmi_set_key(x)
+fmi_set_key(api_key)
 
 fmi_get_key()
 }
 \arguments{
-\item{x}{A length 1 character vector containing your personal FMI API
+\item{api_key}{A length 1 character vector containing your personal FMI API
 key required to access the download service.}
 }
 \description{
-Use \code{fmi_set_key} to save your personal API key in \code{options} for
-the duration of the R session so that it doesn't have to be manually
-specified each time you create a new query. \code{fmi_get_key} is a
-convenience wrapper around \code{getOptions} so that you don't have to
-remember what the name of the option is to get your key.
+Use \code{fmi_set_key()} to save your personal API key in \code{options} for the
+duration of the R session so that it doesn't have to be manually specified
+each time you create a new query. Alternatively, you can also set an
+environment variable called \code{FMIR_API_KEY} in your \code{.Renviron} file to
+persistently remember the API key. \code{fmi_get_key()} gets your API key by
+checking the session option first (so you can change the key for your
+session) and falls back to checking the environment variable.
 }
 \seealso{
-\href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
-for obtaining a new API key.
+\href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data
+website} for obtaining a new API key.
 }
