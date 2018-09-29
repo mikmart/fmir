@@ -12,34 +12,31 @@
 #'
 #' @seealso [fmi_query()] for constructing the `query` argument
 #' @export
-fmi_data <- function(query)
-{
+fmi_data <- function(query) {
   xml <- xml2::read_xml(validate_query(query))
 
   tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
 
-  if ("ParameterName" %in% names(tbl))
+  if ("ParameterName" %in% names(tbl)) {
     tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
+  }
 
   nm <- tolower(names(tbl))
   purrr::set_names(tbl, nm)
 }
 
-fmi_xml_to_df <- function(xml)
-{
+fmi_xml_to_df <- function(xml) {
   vars <- purrr::set_names(fmi_xml_vars(xml))
   purrr::map_df(vars, fmi_xml_vals, xml = xml)
 }
 
-fmi_xml_vars <- function(xml)
-{
+fmi_xml_vars <- function(xml) {
   first_element <- xml2::xml_find_first(xml, "//BsWfs:BsWfsElement")
   purrr::map_chr(xml2::xml_children(first_element), xml2::xml_name)
 }
 
-fmi_xml_vals <- function(xml, var, parser = readr::parse_guess, ...)
-{
+fmi_xml_vals <- function(xml, var, parser = readr::parse_guess, ...) {
   var_tag <- paste0("//BsWfs:", var)
   xml_var <- xml2::xml_find_all(xml, var_tag)
   parser(xml2::xml_text(xml_var), ...)

@@ -27,36 +27,36 @@
 #' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
 #' @export
 fmi_query <- function(type = c("real-time", "daily", "monthly"),
-                      ..., api_key = getOption("fmir.api_key"))
-{
+                      ..., api_key = getOption("fmir.api_key")) {
   base_url <- fmi_base_url(type, api_key)
 
   dots <- list(...)
-  if (length(dots) == 0)
+  if (length(dots) == 0) {
     return(base_url)
+  }
 
   paste(base_url, fmi_query_params(dots), sep = "&")
 }
 
-fmi_base_url <- function(type, api_key = getOption("fmir.api_key"))
-{
-  paste0("http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
-         "/wfs?request=getFeature&storedquery_id=", fmi_stored_query(type))
+fmi_base_url <- function(type, api_key = getOption("fmir.api_key")) {
+  paste0(
+    "http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
+    "/wfs?request=getFeature&storedquery_id=", fmi_stored_query(type)
+  )
 }
 
-fmi_stored_query <- function(type = c("real-time", "daily", "monthly"))
-{
+fmi_stored_query <- function(type = c("real-time", "daily", "monthly")) {
   type <- match.arg(type)
   type <- if (type == "real-time") "" else paste0("::", type)
   paste0("fmi::observations::weather", type, "::simple")
 }
 
-fmi_query_params <- function(x)
-{
+fmi_query_params <- function(x) {
   nm <- names(x)
 
-  if (is.null(nm) || any(nm == ""))
+  if (is.null(nm) || any(nm == "")) {
     stop("All query parameters must be named", call. = FALSE)
+  }
 
   if (any(lengths(x) != 1)) {
     bad <- x[lengths(x) != 1]
@@ -88,20 +88,17 @@ fmi_query_params <- function(x)
 #' @seealso \href{https://en.ilmatieteenlaitos.fi/open-data}{FMI Open Data website}
 #'   for obtaining a new API key.
 #' @export
-fmi_set_key <- function(x)
-{
+fmi_set_key <- function(x) {
   options(fmir.api_key = validate_api_key(x))
 }
 
 #' @export
 #' @rdname fmi_set_key
-fmi_get_key <- function()
-{
+fmi_get_key <- function() {
   validate_api_key(getOption("fmir.api_key"))
 }
 
-validate_api_key <- function(x)
-{
+validate_api_key <- function(x) {
   if (is.null(x)) {
     msg <- paste0(
       "API key not found, using dummy key instead. ",
@@ -113,8 +110,9 @@ validate_api_key <- function(x)
     return("insert-your-apikey-here")
   }
 
-  if (is.na(x))
+  if (is.na(x)) {
     stop("The API key must not be missing (NA)", call. = FALSE)
+  }
 
   if (!is.character(x) || length(x) != 1) {
     msg <- paste0(
