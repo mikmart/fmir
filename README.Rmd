@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 fmir
 ===
-[![Travis build status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build status](https://travis-ci.com/mikmart/fmir.svg?branch=master)](https://travis-ci.com/mikmart/fmir) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 
 The **fmir** package provides tools for easily accessing up to date, open weather data from Finland. The data are made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). Key features of the package include:

@@ -4,7 +4,7 @@
 # fmir
 
 [![Travis build
-status](https://travis-ci.org/mikmart/fmir.svg?branch=master)](https://travis-ci.org/mikmart/fmir)
+status](https://travis-ci.com/mikmart/fmir.svg?branch=master)](https://travis-ci.com/mikmart/fmir)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 The **fmir** package provides tools for easily accessing up to date,
@@ -57,7 +57,7 @@ fmi_set_key("insert-your-apikey-here")
 ```
 
 Once your key is set, you can construct queries to the API with
-`fmi_query()`and then execute the queries with `fmi_data()`. A default
+`fmi_query()` and then execute the queries with `fmi_data()`. A default
 query with only a `place` parameter will return observations with a
 10-minute interval for the past 24 hours:
 
@@ -71,12 +71,12 @@ head(weather)
 #> # A tibble: 6 x 13
 #>   location   time                p_sea  r_1h    rh ri_10min snow_aws   t2m
 #>   <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl> <dbl>
-#> 1 65.00639 ~ 2018-09-29 04:10:00 1011.   NaN    95      NaN      NaN   0.1
-#> 2 65.00639 ~ 2018-09-29 04:20:00 1011.   NaN    95      NaN      NaN  -0.1
-#> 3 65.00639 ~ 2018-09-29 04:30:00 1011.   NaN    96      NaN      NaN   0.1
-#> 4 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
-#> 5 65.00639 ~ 2018-09-29 04:50:00 1011.   NaN    96      NaN      NaN   0  
-#> 6 65.00639 ~ 2018-09-29 05:00:00 1011.   NaN    96      NaN      NaN   0  
+#> 1 65.00639 ~ 2018-09-29 04:30:00 1011.   NaN    96      NaN      NaN   0.1
+#> 2 65.00639 ~ 2018-09-29 04:40:00 1011.   NaN    96      NaN      NaN  -0.1
+#> 3 65.00639 ~ 2018-09-29 04:50:00 1011.   NaN    96      NaN      NaN   0  
+#> 4 65.00639 ~ 2018-09-29 05:00:00 1011.   NaN    96      NaN      NaN   0  
+#> 5 65.00639 ~ 2018-09-29 05:10:00 1011.   NaN    96      NaN      NaN   0  
+#> 6 65.00639 ~ 2018-09-29 05:20:00 1011.   NaN    96      NaN      NaN  -0.2
 #> # ... with 5 more variables: td <dbl>, vis <dbl>, wd_10min <dbl>,
 #> #   wg_10min <dbl>, ws_10min <dbl>
 
