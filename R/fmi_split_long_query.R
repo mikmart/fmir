@@ -78,7 +78,7 @@ timepoints2intervals <- function(x) {
 `query_param<-` <- function(query, param, value) {
   old_value <- query_param(query, param)
 
-  rx <- stringr::str_glue("(?<={parameter}=)[^&]+")
+  rx <- stringr::str_glue("(?<={param}=)[^&]+")
   query <- stringr::str_replace(query, rx, value)
 
   ifelse(is.na(old_value), query_add_param(query, param, value), query)
