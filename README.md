@@ -64,18 +64,22 @@ q <- fmi_query(place = "Oulu")
 
 # download the data corresponding to your query
 weather <- fmi_data(q)
-head(weather)
-#> # A tibble: 6 x 14
-#>   place location   time                p_sea  r_1h    rh ri_10min snow_aws
-#>   <chr> <chr>      <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
-#> 1 Oulu  65.00639 ~ 2018-09-29 20:10:00  998.   NaN    77      NaN      NaN
-#> 2 Oulu  65.00639 ~ 2018-09-29 20:20:00  998.   NaN    76      NaN      NaN
-#> 3 Oulu  65.00639 ~ 2018-09-29 20:30:00  998.   NaN    76      NaN      NaN
-#> 4 Oulu  65.00639 ~ 2018-09-29 20:40:00  998.   NaN    78      NaN      NaN
-#> 5 Oulu  65.00639 ~ 2018-09-29 20:50:00  998.   NaN    79      NaN      NaN
-#> 6 Oulu  65.00639 ~ 2018-09-29 21:00:00  998.   NaN    81      NaN      NaN
-#> # ... with 6 more variables: t2m <dbl>, td <dbl>, vis <dbl>,
-#> #   wd_10min <dbl>, wg_10min <dbl>, ws_10min <dbl>
+weather
+#> # A tibble: 72 x 14
+#>    place location  time                p_sea  r_1h    rh ri_10min snow_aws
+#>    <chr> <chr>     <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
+#>  1 Oulu  65.00639~ 2018-09-29 20:10:00  998.   NaN    77      NaN      NaN
+#>  2 Oulu  65.00639~ 2018-09-29 20:20:00  998.   NaN    76      NaN      NaN
+#>  3 Oulu  65.00639~ 2018-09-29 20:30:00  998.   NaN    76      NaN      NaN
+#>  4 Oulu  65.00639~ 2018-09-29 20:40:00  998.   NaN    78      NaN      NaN
+#>  5 Oulu  65.00639~ 2018-09-29 20:50:00  998.   NaN    79      NaN      NaN
+#>  6 Oulu  65.00639~ 2018-09-29 21:00:00  998.   NaN    81      NaN      NaN
+#>  7 Oulu  65.00639~ 2018-09-29 21:10:00  998.   NaN    83      NaN      NaN
+#>  8 Oulu  65.00639~ 2018-09-29 21:20:00  997.   NaN    83      NaN      NaN
+#>  9 Oulu  65.00639~ 2018-09-29 21:30:00  997.   NaN    84      NaN      NaN
+#> 10 Oulu  65.00639~ 2018-09-29 21:40:00  997.   NaN    85      NaN      NaN
+#> # ... with 62 more rows, and 6 more variables: t2m <dbl>, td <dbl>,
+#> #   vis <dbl>, wd_10min <dbl>, wg_10min <dbl>, ws_10min <dbl>
 
 # draw a simple line graph of the recent temperature
 ggplot(weather, aes(time, t2m)) + geom_line()
