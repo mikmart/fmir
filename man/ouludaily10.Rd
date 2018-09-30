@@ -6,6 +6,7 @@
 \title{Daily weather in Oulu, Finland, in 2010-2017}
 \format{A data frame with 2922 rows and 8 variables:
 \describe{
+\item{place}{city name}
 \item{location}{coordinates of the observation station}
 \item{time}{date of observation}
 \item{rrday}{precipitation rate}
@@ -20,7 +21,9 @@ ouludaily10
 }
 \description{
 A dataset downloaded from the Finnish Meteorological Institute's open data
-API using \code{fmir}. Contains daily simple weather observations from Oulu,
-Finland, covering the years 2010 to 2017.
+API using \strong{fmir}. Contains daily simple weather observations from Oulu,
+Finland, covering the years 2010 to 2017. The data are made available by the
+\href{https://en.ilmatieteenlaitos.fi}{Finnish Meteorological Institute} and are
+licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC-BY 4.0}.
 }
 \keyword{datasets}
