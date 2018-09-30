@@ -7,14 +7,14 @@
   
 * `fmi_query()` is now vectorised with respect to the query parameters. This
   means you can now (for example) simultaneously create queries for multiple
-  places like `fmi_query(place = c("Oulu", "Espoo"))`.
+  places like `fmi_query(place = c("Oulu", "Espoo"))` (#1).
 
 * `fmi_data()` now:
     1. Takes vectorized queries and returns the result in a single `tbl_df`. It
        is not advisable to mix query types (e.g. `"daily"` and `"monthly"`) in
        a single query vector as that will result in malformed data.
     2. Recognizes when queries span a time interval too long for the type and
-       automatically splits them with `fmi_split_long_query()`.
+       automatically splits them with `fmi_split_long_query()` (#2).
     3. Adds a column to its output data specifying the `place` in the query.
 
 * You can now use the environment variable `FMIR_API_KEY` to remember your API
