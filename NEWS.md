@@ -1,3 +1,5 @@
+# fmir 0.1.0.9000
+
 # fmir 0.1.0
 
 * New `fmi_split_long_query()` can be used to split queries that are too long
