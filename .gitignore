@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 data-raw/api-key.txt
+inst/doc
