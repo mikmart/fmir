@@ -60,29 +60,29 @@ with only a `place` parameter will return weather observations with a
 
 ``` r
 # generate a query url with fmi_query
-q <- fmi_query(place = "Oulu")
+q <- fmi_query(place = c("Espoo", "Oulu", "Rovaniemi"))
 
 # download the data corresponding to your query
 weather <- fmi_data(q)
 weather
-#> # A tibble: 72 x 14
+#> # A tibble: 216 x 14
 #>    place location  time                p_sea  r_1h    rh ri_10min snow_aws
 #>    <chr> <chr>     <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
-#>  1 Oulu  65.00639~ 2018-09-29 20:10:00  998.   NaN    77      NaN      NaN
-#>  2 Oulu  65.00639~ 2018-09-29 20:20:00  998.   NaN    76      NaN      NaN
-#>  3 Oulu  65.00639~ 2018-09-29 20:30:00  998.   NaN    76      NaN      NaN
-#>  4 Oulu  65.00639~ 2018-09-29 20:40:00  998.   NaN    78      NaN      NaN
-#>  5 Oulu  65.00639~ 2018-09-29 20:50:00  998.   NaN    79      NaN      NaN
-#>  6 Oulu  65.00639~ 2018-09-29 21:00:00  998.   NaN    81      NaN      NaN
-#>  7 Oulu  65.00639~ 2018-09-29 21:10:00  998.   NaN    83      NaN      NaN
-#>  8 Oulu  65.00639~ 2018-09-29 21:20:00  997.   NaN    83      NaN      NaN
-#>  9 Oulu  65.00639~ 2018-09-29 21:30:00  997.   NaN    84      NaN      NaN
-#> 10 Oulu  65.00639~ 2018-09-29 21:40:00  997.   NaN    85      NaN      NaN
-#> # ... with 62 more rows, and 6 more variables: t2m <dbl>, td <dbl>,
+#>  1 Espoo 60.17802~ 2018-09-29 20:10:00 1010  NaN      89      0.8       -1
+#>  2 Espoo 60.17802~ 2018-09-29 20:20:00 1010. NaN      90      0.5       -1
+#>  3 Espoo 60.17802~ 2018-09-29 20:30:00 1009. NaN      92      1.4       -1
+#>  4 Espoo 60.17802~ 2018-09-29 20:40:00 1009  NaN      93      0.7       -1
+#>  5 Espoo 60.17802~ 2018-09-29 20:50:00 1009. NaN      95      0.1       -1
+#>  6 Espoo 60.17802~ 2018-09-29 21:00:00 1008.   1.3    96      4.2       -1
+#>  7 Espoo 60.17802~ 2018-09-29 21:10:00 1008. NaN      97      3.2       -1
+#>  8 Espoo 60.17802~ 2018-09-29 21:20:00 1008. NaN      96      1         -1
+#>  9 Espoo 60.17802~ 2018-09-29 21:30:00 1008. NaN      97      0.4       -1
+#> 10 Espoo 60.17802~ 2018-09-29 21:40:00 1007. NaN      95      0         -1
+#> # ... with 206 more rows, and 6 more variables: t2m <dbl>, td <dbl>,
 #> #   vis <dbl>, wd_10min <dbl>, wg_10min <dbl>, ws_10min <dbl>
 
 # draw a simple line graph of the recent temperature
-ggplot(weather, aes(time, t2m)) + geom_line()
+ggplot(weather, aes(time, t2m)) + geom_line(aes(colour = place))
 ```
 
 ![](man/figures/README-basic-usage-1.png)<!-- -->
