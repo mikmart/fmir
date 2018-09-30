@@ -31,6 +31,9 @@ a key by
 for open data use with FMI. See [FMI’s open data
 manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
+For a more comprehensive and feature-rich package for accessing the FMI
+API, check out <https://github.com/rOpenGov/fmi>.
+
 ## Installation
 
 At the moment, the easiest way to install **fmir** is from github with
@@ -68,16 +71,16 @@ weather
 #> # A tibble: 216 x 14
 #>    place location  time                p_sea  r_1h    rh ri_10min snow_aws
 #>    <chr> <chr>     <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
-#>  1 Espoo 60.17802~ 2018-09-29 20:10:00 1010  NaN      89      0.8       -1
-#>  2 Espoo 60.17802~ 2018-09-29 20:20:00 1010. NaN      90      0.5       -1
-#>  3 Espoo 60.17802~ 2018-09-29 20:30:00 1009. NaN      92      1.4       -1
-#>  4 Espoo 60.17802~ 2018-09-29 20:40:00 1009  NaN      93      0.7       -1
-#>  5 Espoo 60.17802~ 2018-09-29 20:50:00 1009. NaN      95      0.1       -1
-#>  6 Espoo 60.17802~ 2018-09-29 21:00:00 1008.   1.3    96      4.2       -1
-#>  7 Espoo 60.17802~ 2018-09-29 21:10:00 1008. NaN      97      3.2       -1
-#>  8 Espoo 60.17802~ 2018-09-29 21:20:00 1008. NaN      96      1         -1
-#>  9 Espoo 60.17802~ 2018-09-29 21:30:00 1008. NaN      97      0.4       -1
-#> 10 Espoo 60.17802~ 2018-09-29 21:40:00 1007. NaN      95      0         -1
+#>  1 Espoo 60.17802~ 2018-09-29 20:40:00 1009  NaN      93      0.7       -1
+#>  2 Espoo 60.17802~ 2018-09-29 20:50:00 1009. NaN      95      0.1       -1
+#>  3 Espoo 60.17802~ 2018-09-29 21:00:00 1008.   1.3    96      4.2       -1
+#>  4 Espoo 60.17802~ 2018-09-29 21:10:00 1008. NaN      97      3.2       -1
+#>  5 Espoo 60.17802~ 2018-09-29 21:20:00 1008. NaN      96      1         -1
+#>  6 Espoo 60.17802~ 2018-09-29 21:30:00 1008. NaN      97      0.4       -1
+#>  7 Espoo 60.17802~ 2018-09-29 21:40:00 1007. NaN      95      0         -1
+#>  8 Espoo 60.17802~ 2018-09-29 21:50:00 1007. NaN      95      0.5       -1
+#>  9 Espoo 60.17802~ 2018-09-29 22:00:00 1007    0.9    94      0.1       -1
+#> 10 Espoo 60.17802~ 2018-09-29 22:10:00 1007. NaN      94      0         -1
 #> # ... with 206 more rows, and 6 more variables: t2m <dbl>, td <dbl>,
 #> #   vis <dbl>, wd_10min <dbl>, wg_10min <dbl>, ws_10min <dbl>
 

@@ -27,6 +27,7 @@ Key features in **fmir** include:
 
 FMI provides varying types of data in [several different formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services) in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by **fmir** is the "simple" weather format. In order to access the download services of the API, you'll need to obtain a key by [registering](https://ilmatieteenlaitos.fi/rekisteroityminen-avoimen-datan-kayttajaksi) for open data use with FMI. See [FMI's open data manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
+For a more comprehensive and feature-rich package for accessing the FMI API, check out https://github.com/rOpenGov/fmi.
 
 ## Installation
 At the moment, the easiest way to install **fmir** is from github with `devtools`:
