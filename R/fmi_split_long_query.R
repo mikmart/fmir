@@ -2,7 +2,7 @@
 #' @inheritParams fmi_data
 #' @return A vector of queries with long queries split into multiple smaller
 #'   ones.
-#' @export
+#' @noRd
 fmi_split_long_query <- function(query) {
   purrr::flatten_chr(purrr::map_if(query, is_long_query, query_split))
 }

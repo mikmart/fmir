@@ -2,6 +2,9 @@
 
 * HTTP errors now include the description provided by the API.
 
+* `fmi_split_long_query()` is no longer exported, as with current design,
+  there isn't any scenario in which a user should have to call it directly.
+
 # fmir 0.1.0
 
 * New `fmi_split_long_query()` can be used to split queries that are too long
