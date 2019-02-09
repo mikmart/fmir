@@ -40,6 +40,7 @@ query_split <- function(query) {
   query
 }
 
+#' @importFrom utils head tail
 timepoints2intervals <- function(x) {
   starts <- head(x, -1)
   ends <- tail(x, -1)

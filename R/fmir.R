@@ -1,2 +1,2 @@
-#' @importFrom utils head tail
-NULL
+#' @keywords internal
+"_PACKAGE"
