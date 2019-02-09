@@ -16,10 +16,11 @@ query_length <- function(query) {
 }
 
 query_length_limit <- function(query) {
-  unname(query_max_hours[query_type(query)]) * 3600 # limit in seconds
+  unname(query_max_seconds[query_type(query)])
 }
 
 query_max_hours <- c("real-time" = 168, "daily" = 8928, "monthly" = 87600)
+query_max_seconds <- query_max_hours * 3600
 
 query_type <- function(query) {
   rx <- "fmi::observations::weather::(\\w*)(::)?simple"
