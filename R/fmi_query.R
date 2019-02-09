@@ -7,21 +7,20 @@
 #' @inheritParams fmi_set_key
 #'
 #' @details The list of possible parameters passed in `...` depends on the type
-#' and format of the query being constructed. Query-specific parameters are
-#' fully documented in the [FMI Open Data
-#' Manual](http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services).
+#'   and format of the query being constructed. Query-specific parameters are
+#'   fully documented in the [FMI Open Data
+#'   Manual](http://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services).
 #'
-#' Common parameters include:
+#'   Common parameters include:
 #'
-#' \describe{
-#'   \item{starttime, endtime}{A date or datetime specifying the
-#'   start/end of the interval to request data for}
-#'   \item{place}{A string specifying the place of measurement in general
-#'   terms. E.g. `"Helsinki"`, `"Oulu"`}
-#' }
+#'   \describe{ \item{starttime, endtime}{A date or datetime specifying the
+#'   start/end of the interval to request data for. These must be in the
+#'   ISO-8601 format.} \item{place}{A string specifying the place of measurement
+#'   in general terms. E.g. `"Helsinki"`, `"Oulu"`} }
 #'
 #' @return A character vector containing query URLs for the FMI API.
 #' @seealso [fmi_set_key()] for setting the API key for your session.
+#'   [fmi_data()] to request data from the API.
 #' @examples
 #' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
 #' @export
