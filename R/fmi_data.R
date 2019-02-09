@@ -20,7 +20,10 @@ fmi_data <- function(query) {
     return(purrr::map_df(query, delay_by(100, fmi_data)))
   }
 
-  xml <- xml2::read_xml(query)
+  response <- httr::GET(query)
+  fmi_validate_response(response)
+
+  xml <- httr::content(response)
 
   tbl <- fmi_xml_to_df(xml)
   tbl <- tibble::as_tibble(tbl)
@@ -33,6 +36,25 @@ fmi_data <- function(query) {
 
   place <- query_param(query, "place")
   prepend_column(tbl, place = place)
+}
+
+fmi_validate_response <- function(response) {
+  if (!httr::http_error(response)) {
+    return(response)
+  }
+
+  error_text <- fmi_parse_error(response)
+  stop(error_text, call. = FALSE)
+}
+
+fmi_parse_error <- function(response) {
+  content <- httr::content(response)
+
+  nodes <- xml2::xml_find_all(content, "//d1:ExceptionText")
+  text <- purrr::discard(xml2::xml_text(nodes), startsWith, "URI")
+
+  message <- httr::http_status(response)$message
+  paste(c(message, text), collapse = "\n")
 }
 
 fmi_xml_to_df <- function(xml) {
