@@ -72,5 +72,5 @@ fmi_data_tidy <- function(tbl) {
     tbl <- tidyr::spread(tbl, "ParameterName", "ParameterValue")
   }
 
-  janitor::clean_names(tbl)
+  setNames(tbl, tolower(names(tbl)))
 }
