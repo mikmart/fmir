@@ -15,7 +15,7 @@ query_split <- function(query) {
   end <- query_param_dttm(query, "endtime")
   end[is.na(end)] <- lubridate::now()
 
-  width <- query_length_limit(query_type(query))
+  width <- query_length_limit(query)
   timepoints <- purrr::map2(start, end, seq, by = width)
 
   # if width didn't equally divide the start-end interval, need to
