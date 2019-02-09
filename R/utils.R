@@ -19,21 +19,3 @@ delay_by <- function(ms, f) {
 prepend_column <- function(.data, ...) {
   tibble::add_column(.data, ..., .before = 1L)
 }
-
-#' Turn a list into a character vector
-#'
-#' Use to turn a (possibly nested) list to a character vector. Names for the
-#' output vector are taken from the names of the top level list.
-#'
-#' @param x list
-#' @return named character vector
-#' @noRd
-squash_list <- function(x) {
-  x <- purrr::map_if(x, purrr::is_bare_list, squash_list)
-  nm <- rep(names(x), lengths(x))
-
-  x <- purrr::map(x, as.character)
-  x <- purrr::flatten(x)
-
-  purrr::set_names(x, nm)
-}
