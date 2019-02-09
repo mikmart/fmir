@@ -7,27 +7,32 @@ fmi_split_long_query <- function(query) {
   purrr::flatten_chr(purrr::map_if(query, is_long_query, query_split))
 }
 
+
+# is_long_query -----------------------------------------------------------
+
 is_long_query <- function(query) {
   query_length(query) > query_length_limit(query_type(query))
 }
 
 query_length <- function(query) {
-  start <- query_param(query, "starttime")
-  start <- lubridate::as_datetime(start)
+  start <- query_param_dttm(query, "starttime")
 
-  end <- query_param(query, "endtime")
-  end <- lubridate::as_datetime(end)
-  end <- replace(end, is.na(end), lubridate::now())
+  # if endtime is missing and start is present, the actual query length
+  # will be determined at the time the server receives the query
+  # here we approximate end with current time, which is often good enough
+  end <- query_param_dttm(query, "endtime")
+  end[is.na(end)] <- lubridate::now()
 
   d <- as.double(difftime(end, start, units = "secs"))
-  replace(d, is.na(d), -1) # if NA => start missing => not too long
+  replace(d, is.na(start), -1) # if start missing => not too long
+}
+
+query_param_dttm <- function(query, param) {
+  lubridate::as_datetime(query_param(query, param))
 }
 
 query_param <- function(query, param) {
-  url <- purrr::map(query, httr::parse_url)
-  param <- purrr::map(url, c("query", param))
-  param <- purrr::map_if(param, is.null, ~ NA)
-  purrr::flatten_chr(param)
+  purrr::map_chr(query, list(httr::parse_url, "query", param), .default = NA)
 }
 
 query_type <- function(query) {
