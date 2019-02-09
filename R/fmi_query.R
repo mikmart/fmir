@@ -55,7 +55,7 @@ fmi_stored_query <- function(type = c("real-time", "daily", "monthly")) {
 }
 
 fmi_query_params <- function(...) {
-  x <- vctrs::vec_recycle(...)
+  x <- vctrs::vec_recycle_common(...)
   if (length(x) == 0) {
     return(character())
   }
