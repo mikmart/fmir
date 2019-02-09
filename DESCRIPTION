@@ -1,31 +1,33 @@
-Package: fmir
 Type: Package
-Title: Access open weather data from the Finnish Meteorological Institute
+Package: fmir
+Title: Access open weather data from the Finnish Meteorological
+    Institute
 Version: 0.1.0.9000
-Authors@R: person("Mikko", "Marttila", role = c("aut", "cre"),
-                  email = "mikmart@mikkomarttila.com")
-Description: This package provides helper functions for easily accessing up to
-    date, open weather data, made available by the Finnish Meteorological
-    Institute. Use simple R syntax to create queries for the FMI API;
-    download XML data from the API; and parse into a tidy R data frame.
-    In order to use the open data API, you'll need to register with the Finnish
-    Meteorological Institute. See https://en.ilmatieteenlaitos.fi/open-data for
-    details.
-URL: https://github.com/mikmart/fmir
+Authors@R: 
+    person(given = "Mikko",
+           family = "Marttila",
+           role = c("aut", "cre"),
+           email = "mikmart@mikkomarttila.com")
+Description: This package provides helper functions for
+    easily accessing up to date, open weather data, made available by the
+    Finnish Meteorological Institute. Use simple R syntax to create
+    queries for the FMI API; download XML data from the API; and parse
+    into a tidy R data frame.  In order to use the open data API, you'll
+    need to register with the Finnish Meteorological Institute. See
+    https://en.ilmatieteenlaitos.fi/open-data for details.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
+URL: https://github.com/mikmart/fmir
 Depends:
     R (>= 3.4.0)
 Imports: 
-    lubridate (>= 1.7.4),
-    purrr (>= 0.3.0),
-    readr (>= 1.1.1),
-    tibble (>= 1.4.2),
-    tidyr (>= 0.8.0),
+    httr (>= 1.3.1),
     xml2 (>= 1.2.0),
-    vctrs (>= 0.0.0.9000),
-    httr (>= 1.3.1)
+    readr (>= 1.1.1),
+    purrr (>= 0.3.0),
+    tidyr (>= 0.8.0),
+    tibble (>= 1.4.2),
+    lubridate (>= 1.7.4),
+    vctrs (>= 0.0.0.9000)
 Suggests: 
     tidyverse (>= 1.2.1),
     testthat (>= 2.0.0),
@@ -34,8 +36,11 @@ Suggests:
     covr (>= 3.1.0),
     knitr,
     rmarkdown
-RoxygenNote: 6.1.1
-Roxygen: list(markdown = TRUE)
+VignetteBuilder: 
+    knitr
 Remotes: 
     r-lib/vctrs
-VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
