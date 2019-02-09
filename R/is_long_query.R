@@ -23,6 +23,6 @@ query_max_hours <- c("real-time" = 168, "daily" = 8928, "monthly" = 87600)
 
 query_type <- function(query) {
   rx <- "fmi::observations::weather::(\\w*)(::)?simple"
-  type <- stringr::str_match(query, rx)[, 2L]
-  ifelse(type == "", "real-time", type)
+  type <- purrr::map_chr(regmatches(query, regexec(rx, query)), 2)
+  replace(type, type == "", "real-time")
 }
