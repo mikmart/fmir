@@ -47,26 +47,34 @@ query_length_limit <- function(query_type) {
 
 query_max_hours <- c("real-time" = 168, "daily" = 8928, "monthly" = 87600)
 
-query_split <- function(query) {
-  start <- query_param(query, "starttime")
-  start <- lubridate::as_datetime(start)
-  # start can't be NA here because only called on overly long queries
 
-  end <- query_param(query, "endtime")
-  end <- lubridate::as_datetime(end)
-  end <- replace(end, is.na(end), lubridate::now())
+# query_split -------------------------------------------------------------
+
+query_split <- function(query) {
+  start <- query_param_dttm(query, "starttime")
+  # start can't be NA here because this is only called on long queries,
+  # and queries with a missing start can't be long queries
+
+  end <- query_param_dttm(query, "endtime")
+  end[is.na(end)] <- lubridate::now()
 
   width <- query_length_limit(query_type(query))
   timepoints <- purrr::map2(start, end, seq, by = width)
+
+  # if width didn't equally divide the start-end interval, need to
+  # ensure that it's still included in in the resulting intervals
   timepoints <- purrr::map2(timepoints, end, ~ unique(c(.x, .y)))
 
-  int <- purrr::map(timepoints, timepoints2intervals)
-  int <- purrr::modify_depth(int, 2, fmi_format_date)
-  n_splits <- purrr::map_int(int, ~ length(.x$start))
+  # at this point we have "timelines" for each query
+  # need to turn those into a list of start-end times
+  intervals <- purrr::map(timepoints, timepoints2intervals)
 
-  int <- purrr::transpose(int)
-  new <- purrr::map(int, purrr::flatten_chr)
+  # transpose discards S3 classes so need times as character
+  intervals <- purrr::modify_depth(intervals, 2, fmi_format_date)
+  new <- purrr::map(purrr::transpose(intervals), purrr::flatten_chr)
 
+  # how many sub-queries did each query get turned into?
+  n_splits <- purrr::map_int(intervals, ~ length(.x$start))
   query <- rep(query, n_splits)
 
   query_param(query, "starttime") <- new$start
@@ -76,17 +84,19 @@ query_split <- function(query) {
 }
 
 timepoints2intervals <- function(x) {
-  s <- head(x, -1)
-  e <- tail(x, -1)
-  e <- c(head(e, -1) - 1, tail(e, 1))
+  starts <- head(x, -1)
+  ends <- tail(x, -1)
 
-  list(start = s, end = e)
+  # discrete intervals: ensure they don't overlap
+  ends <- c(head(ends, -1) - 1, tail(ends, 1))
+
+  list(start = starts, end = ends)
 }
 
 `query_param<-` <- function(query, param, value) {
   old_value <- query_param(query, param)
 
-  rx <- stringr::str_glue("(?<={param}=)[^&]+")
+  rx <- glue::glue("(?<={param}=)[^&]+")
   query <- stringr::str_replace(query, rx, value)
 
   ifelse(is.na(old_value), query_add_param(query, param, value), query)
