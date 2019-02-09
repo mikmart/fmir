@@ -26,13 +26,7 @@ fmi_data <- function(query) {
   xml <- httr::content(response)
 
   tbl <- fmi_xml_to_df(xml)
-  tbl <- tibble::as_tibble(tbl)
-
-  if ("ParameterName" %in% names(tbl)) {
-    tbl <- tidyr::spread_(tbl, "ParameterName", "ParameterValue")
-  }
-
-  tbl <- janitor::clean_names(tbl)
+  tbl <- fmi_data_tidy(tbl)
 
   place <- query_param(query, "place")
   prepend_column(tbl, place = place)
@@ -71,4 +65,12 @@ fmi_xml_vals <- function(xml, var) {
   var_tag <- paste0("//BsWfs:", var)
   xml_var <- xml2::xml_find_all(xml, var_tag)
   readr::parse_guess(xml2::xml_text(xml_var))
+}
+
+fmi_data_tidy <- function(tbl) {
+  if ("ParameterName" %in% names(tbl)) {
+    tbl <- tidyr::spread(tbl, "ParameterName", "ParameterValue")
+  }
+
+  janitor::clean_names(tbl)
 }
