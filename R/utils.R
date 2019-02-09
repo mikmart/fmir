@@ -19,3 +19,7 @@ delay_by <- function(ms, f) {
 prepend_column <- function(.data, ...) {
   tibble::add_column(.data, ..., .before = 1L)
 }
+
+re_match <- function(x, pattern) {
+  do.call("rbind", regmatches(x, regexec(pattern, x)))
+}

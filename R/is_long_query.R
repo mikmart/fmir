@@ -24,6 +24,6 @@ query_max_seconds <- query_max_hours * 3600
 
 query_type <- function(query) {
   rx <- "fmi::observations::weather::(\\w*)(::)?simple"
-  type <- purrr::map_chr(regmatches(query, regexec(rx, query)), 2)
+  type <- re_match(query, rx)[, 2]
   replace(type, type == "", "real-time")
 }
