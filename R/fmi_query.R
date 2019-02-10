@@ -4,7 +4,6 @@
 #'   of the observations to request
 #' @param ... Name-value pairs of character vectors, used as query parameters.
 #'   See details for possible values.
-#' @inheritParams fmi_set_key
 #'
 #' @details The list of possible parameters passed in `...` depends on the type
 #'   and format of the query being constructed. Query-specific parameters are
@@ -19,14 +18,12 @@
 #'   in general terms. E.g. `"Helsinki"`, `"Oulu"`} }
 #'
 #' @return A character vector containing query URLs for the FMI API.
-#' @seealso [fmi_set_key()] for setting the API key for your session.
-#'   [fmi_data()] to request data from the API.
+#' @seealso [fmi_data()] to request data from the API.
 #' @examples
 #' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
 #' @export
-fmi_query <- function(type = c("real-time", "daily", "monthly"),
-                      ..., api_key = fmi_get_key()) {
-  base_url <- fmi_base_url(type, api_key)
+fmi_query <- function(type = c("real-time", "daily", "monthly"), ...) {
+  base_url <- fmi_base_url(type)
   params <- fmi_query_params(...)
 
   validate_query(new_query(base_url, params))
@@ -40,10 +37,12 @@ new_query <- function(base_url, params) {
   paste(base_url, params, sep = "&")
 }
 
-fmi_base_url <- function(type, api_key = fmi_get_key()) {
+wfs_server_url <- "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0"
+
+fmi_base_url <- function(type) {
   paste0(
-    "http://data.fmi.fi/fmi-apikey/", validate_api_key(api_key),
-    "/wfs?request=getFeature&storedquery_id=", fmi_stored_query(type)
+    wfs_server_url, "&request=GetFeature",
+    "&storedquery_id=", fmi_stored_query(type)
   )
 }
 
