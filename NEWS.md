@@ -1,5 +1,9 @@
 # fmir 0.1.1.9000
 
+* All functionality regarding using and managing API keys has been removed.
+  Instead, the package has moved to the API that does not require a key but
+  provides the same functionality as before.
+
 # fmir 0.1.1
 
 This is the final release of the package that uses API keys.
