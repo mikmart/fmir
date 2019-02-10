@@ -13,19 +13,15 @@ status](https://codecov.io/gh/mikmart/fmir/branch/master/graph/badge.svg)](https
 weather data from Finland. The data are made available by the [Finnish
 Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are
 licensed under
-[CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+[CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [FMI’s
+open data manual](https://en.ilmatieteenlaitos.fi/open-data) for
+details.
 
 Key features in **fmir** include:
 
   - Use simple R syntax to create queries for the FMI API
   - Flexibly download XML weather data from the API
   - Parse the XML response into a regular data frame
-
-In order to access the download services of the API, you’ll need to
-obtain a key by
-[registering](https://ilmatieteenlaitos.fi/rekisteroityminen-avoimen-datan-kayttajaksi)
-for open data use with FMI. See [FMI’s open data
-manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
 FMI provides varying types of data in [several different
 formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services)
@@ -46,22 +42,15 @@ devtools::install_github("mikmart/fmir")
 
 ## Usage
 
-To get started, set your API key for the session with `fmi_set_key()`:
+You can construct query URLs to the API with `fmi_query()`, and then
+execute them with `fmi_data()`. A simple query with only a `place`
+parameter will return weather observations with a 10-minute interval for
+the past 12 hours:
 
 ``` r
 library(fmir)
 library(ggplot2)
 
-# set your api key for your session
-fmi_set_key("insert-your-apikey-here")
-```
-
-Once your key is set, you can construct queries to the API with
-`fmi_query()` and then execute them with `fmi_data()`. A simple query
-with only a `place` parameter will return weather observations with a
-10-minute interval for the past 12 hours:
-
-``` r
 # generate a query url with fmi_query
 q <- fmi_query(place = c("Espoo", "Oulu", "Rovaniemi"))
 
@@ -69,18 +58,18 @@ q <- fmi_query(place = c("Espoo", "Oulu", "Rovaniemi"))
 weather <- fmi_data(q)
 weather
 #> # A tibble: 216 x 14
-#>    place location  time                p_sea  r_1h    rh ri_10min snow_aws
-#>    <chr> <chr>     <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
-#>  1 Espoo 60.17802~ 2018-09-29 21:30:00 1008. NaN      97      0.4       -1
-#>  2 Espoo 60.17802~ 2018-09-29 21:40:00 1007. NaN      95      0         -1
-#>  3 Espoo 60.17802~ 2018-09-29 21:50:00 1007. NaN      95      0.5       -1
-#>  4 Espoo 60.17802~ 2018-09-29 22:00:00 1007    0.9    94      0.1       -1
-#>  5 Espoo 60.17802~ 2018-09-29 22:10:00 1007. NaN      94      0         -1
-#>  6 Espoo 60.17802~ 2018-09-29 22:20:00 1007. NaN      93      0         -1
-#>  7 Espoo 60.17802~ 2018-09-29 22:30:00 1007. NaN      92      0         -1
-#>  8 Espoo 60.17802~ 2018-09-29 22:40:00 1006. NaN      91      0         -1
-#>  9 Espoo 60.17802~ 2018-09-29 22:50:00 1006. NaN      90      0         -1
-#> 10 Espoo 60.17802~ 2018-09-29 23:00:00 1006.   0      89      0         -1
+#>    place location time                p_sea  r_1h    rh ri_10min snow_aws
+#>    <chr> <chr>    <dttm>              <dbl> <dbl> <dbl>    <dbl>    <dbl>
+#>  1 Espoo 60.1780~ 2019-02-09 22:40:00  995. NaN      94      0.3       39
+#>  2 Espoo 60.1780~ 2019-02-09 22:50:00  995. NaN      93      0.5       39
+#>  3 Espoo 60.1780~ 2019-02-09 23:00:00  995.   0.6    94      0.7       39
+#>  4 Espoo 60.1780~ 2019-02-09 23:10:00  995. NaN      94      0.6       39
+#>  5 Espoo 60.1780~ 2019-02-09 23:20:00  995. NaN      95      0.4       39
+#>  6 Espoo 60.1780~ 2019-02-09 23:30:00  995. NaN      95      0.7       39
+#>  7 Espoo 60.1780~ 2019-02-09 23:40:00  995  NaN      96      0.8       39
+#>  8 Espoo 60.1780~ 2019-02-09 23:50:00  995  NaN      96      1.4       39
+#>  9 Espoo 60.1780~ 2019-02-10 00:00:00  995.   0.9    97      1.6       39
+#> 10 Espoo 60.1780~ 2019-02-10 00:10:00  995. NaN      97      1.2       39
 #> # ... with 206 more rows, and 6 more variables: t2m <dbl>, td <dbl>,
 #> #   vis <dbl>, wd_10min <dbl>, wg_10min <dbl>, ws_10min <dbl>
 

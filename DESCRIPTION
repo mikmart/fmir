@@ -2,7 +2,7 @@ Type: Package
 Package: fmir
 Title: Access open weather data from the Finnish Meteorological
     Institute
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: 
     person(given = "Mikko",
            family = "Marttila",
@@ -12,8 +12,7 @@ Description: This package provides helper functions for
     easily accessing up to date, open weather data, made available by the
     Finnish Meteorological Institute. Use simple R syntax to create
     queries for the FMI API; download XML data from the API; and parse
-    into a tidy R data frame.  In order to use the open data API, you'll
-    need to register with the Finnish Meteorological Institute. See
+    into a tidy R data frame. See
     https://en.ilmatieteenlaitos.fi/open-data for details.
 License: MIT + file LICENSE
 URL: https://github.com/mikmart/fmir

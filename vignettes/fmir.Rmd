@@ -12,15 +12,13 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  eval = FALSE,
-  fig.path = "figure/fmir-vignette-"
+  comment = "#>"
 )
 ```
 
 ## Introduction
 
-**fmir** provides simple tools for easily accessing up to date, open weather data from Finland. The data are made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+**fmir** provides simple tools for easily accessing up to date, open weather data from Finland. The data are made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [FMI's open data manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
 Key features in **fmir** include:
 
@@ -28,9 +26,8 @@ Key features in **fmir** include:
 * Flexibly download XML weather data from the API
 * Parse the XML response into a regular data frame
 
-In order to access the download services of the API, you'll need to obtain a key by [registering](https://ilmatieteenlaitos.fi/rekisteroityminen-avoimen-datan-kayttajaksi) for open data use with FMI. See [FMI's open data manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
-
 FMI provides varying types of data in [several different formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services) in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by **fmir** is the "simple" weather format. For a more comprehensive and feature-rich package for accessing the FMI API, check out https://github.com/rOpenGov/fmi.
+
 
 ## Installation
 
@@ -42,25 +39,15 @@ devtools::install_github("mikmart/fmir")
 
 ## Usage
 
-The first step is of course to load the package:
+To start with, load the package:
 
 ```{r packages}
 library(fmir)
 ```
 
-### Setting the API key
-
-To get started with downloading data, set your API key for the session with `fmi_set_key()`:
-
-```{r set-key, eval = FALSE}
-fmi_set_key("insert-your-apikey-here")
-```
-
-Alternatively, you can also save your API key into an environment variable called `FMIR_API_KEY` for persistence across sessions. That is also the method used for creating this vignette.
-
 ### A basic query
 
-Having set your key, we can construct queries to the API with `fmi_query()`, and then execute them with `fmi_data()`. A simple query with only a `place` parameter will return weather observations with a 10-minute interval for the past 12 hours:
+We can construct queries to the API with `fmi_query()`, and then execute them with `fmi_data()`. A simple query with only a `place` parameter will return weather observations with a 10-minute interval for the past 12 hours:
 
 ```{r basic-usage}
 # generate a (vector of) query url(s)
@@ -73,13 +60,9 @@ weather
 
 Having the data at hand, we can then use **ggplot2** to draw a simple line graph of the recent temperatures in Espoo, Oulu and Rovaniemi:
 
-```{r basic-plot, fig.width=6}
+```{r basic-plot}
 library(ggplot2)
 
 # draw a simple line graph of the recent temperature
 ggplot(weather, aes(time, t2m)) + geom_line(aes(colour = place))
-```
-
-```{r, fig.align='center', eval=TRUE, echo=FALSE}
-knitr::include_graphics("figure/fmir-vignette-basic-plot-1.png")
 ```

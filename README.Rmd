@@ -17,15 +17,13 @@ fmir
 [![Travis build status](https://travis-ci.com/mikmart/fmir.svg?branch=master)](https://travis-ci.com/mikmart/fmir) [![Coverage status](https://codecov.io/gh/mikmart/fmir/branch/master/graph/badge.svg)](https://codecov.io/github/mikmart/fmir?branch=master) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 
-**fmir** provides simple tools for easily accessing up to date, open weather data from Finland. The data are made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+**fmir** provides simple tools for easily accessing up to date, open weather data from Finland. The data are made available by the [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi) and are licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [FMI's open data manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
 Key features in **fmir** include:
 
 * Use simple R syntax to create queries for the FMI API
 * Flexibly download XML weather data from the API
 * Parse the XML response into a regular data frame
-
-In order to access the download services of the API, you'll need to obtain a key by [registering](https://ilmatieteenlaitos.fi/rekisteroityminen-avoimen-datan-kayttajaksi) for open data use with FMI. See [FMI's open data manual](https://en.ilmatieteenlaitos.fi/open-data) for details.
 
 FMI provides varying types of data in [several different formats](https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services) in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by **fmir** is the "simple" weather format. For a more comprehensive and feature-rich package for accessing the FMI API, check out https://github.com/rOpenGov/fmi.
 
@@ -38,25 +36,12 @@ devtools::install_github("mikmart/fmir")
 
 ## Usage
 
-To get started, set your API key for the session with `fmi_set_key()`:
-
-```{r set-key, eval = FALSE}
-library(fmir)
-library(ggplot2)
-
-# set your api key for your session
-fmi_set_key("insert-your-apikey-here")
-```
-
-```{r packages, include = FALSE}
-# this README uses an API key from the environment variable FMIR_API_KEY
-library(fmir)
-library(ggplot2)
-```
-
-Once your key is set, you can construct queries to the API with `fmi_query()` and then execute them with `fmi_data()`. A simple query with only a `place` parameter will return weather observations with a 10-minute interval for the past 12 hours:
+You can construct query URLs to the API with `fmi_query()`, and then execute them with `fmi_data()`. A simple query with only a `place` parameter will return weather observations with a 10-minute interval for the past 12 hours:
 
 ```{r basic-usage}
+library(fmir)
+library(ggplot2)
+
 # generate a query url with fmi_query
 q <- fmi_query(place = c("Espoo", "Oulu", "Rovaniemi"))
 
