@@ -37,12 +37,16 @@ new_query <- function(base_url, params) {
   paste(base_url, params, sep = "&")
 }
 
+fmi_base_url <- function(type) {
+  paste0(wfs_server_url, wfs_request("GetFeature"), fmi_stored_query(type))
+}
+
 wfs_server_url <- "https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0"
 
-fmi_base_url <- function(type) {
-  paste0(
-    wfs_server_url, "&request=GetFeature",
-    "&storedquery_id=", fmi_stored_query(type)
+wfs_request <- function(type) {
+  switch(type,
+    GetFeature = "&request=GetFeature&storedquery_id=",
+    stop("Unknown request type supplied: ", type, call. = FALSE)
   )
 }
 
