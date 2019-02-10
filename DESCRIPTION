@@ -2,7 +2,7 @@ Type: Package
 Package: fmir
 Title: Access open weather data from the Finnish Meteorological
     Institute
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: 
     person(given = "Mikko",
            family = "Marttila",

@@ -1,3 +1,5 @@
+# fmir 0.1.1
+
 # fmir 0.1.0.9000
 
 * HTTP errors now include the description provided by the API.
