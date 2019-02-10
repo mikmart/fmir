@@ -116,8 +116,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>fmi_query</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"real-time"</span>, <span class='st'>"daily"</span>, <span class='st'>"monthly"</span>), <span class='no'>...</span>,
-  <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='fu'><a href='fmi_set_key.html'>fmi_get_key</a></span>())</pre>
+    <pre class="usage"><span class='fu'>fmi_query</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"real-time"</span>, <span class='st'>"daily"</span>, <span class='st'>"monthly"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,11 +130,6 @@ of the observations to request</p></td>
       <th>...</th>
       <td><p>Name-value pairs of character vectors, used as query parameters.
 See details for possible values.</p></td>
-    </tr>
-    <tr>
-      <th>api_key</th>
-      <td><p>A length 1 character vector containing your personal FMI API
-key required to access the download service.</p></td>
     </tr>
     </table>
     
@@ -157,12 +151,11 @@ in general terms. E.g. <code>"Helsinki"</code>, <code>"Oulu"</code></p></dd> </d
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='fmi_set_key.html'>fmi_set_key()</a></code> for setting the API key for your session.
-<code><a href='fmi_data.html'>fmi_data()</a></code> to request data from the API.</p></div>
+    <div class='dont-index'><p><code><a href='fmi_data.html'>fmi_data()</a></code> to request data from the API.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fmi_query</span>(<span class='st'>"real-time"</span>, <span class='kw'>place</span> <span class='kw'>=</span> <span class='st'>"Helsinki"</span>, <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='st'>"dummy"</span>)</div><div class='output co'>#&gt; [1] "http://data.fmi.fi/fmi-apikey/dummy/wfs?request=getFeature&amp;storedquery_id=fmi::observations::weather::simple&amp;place=Helsinki"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fmi_query</span>(<span class='st'>"real-time"</span>, <span class='kw'>place</span> <span class='kw'>=</span> <span class='st'>"Helsinki"</span>)</div><div class='output co'>#&gt; [1] "https://opendata.fmi.fi/wfs?service=WFS&amp;version=2.0.0&amp;request=GetFeature&amp;storedquery_id=fmi::observations::weather::simple&amp;place=Helsinki"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

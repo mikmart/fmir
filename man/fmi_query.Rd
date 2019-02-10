@@ -4,8 +4,7 @@
 \alias{fmi_query}
 \title{Construct a query to the FMI API}
 \usage{
-fmi_query(type = c("real-time", "daily", "monthly"), ...,
-  api_key = fmi_get_key())
+fmi_query(type = c("real-time", "daily", "monthly"), ...)
 }
 \arguments{
 \item{type}{A length 1 character vector specifying the measurement interval
@@ -13,9 +12,6 @@ of the observations to request}
 
 \item{...}{Name-value pairs of character vectors, used as query parameters.
 See details for possible values.}
-
-\item{api_key}{A length 1 character vector containing your personal FMI API
-key required to access the download service.}
 }
 \value{
 A character vector containing query URLs for the FMI API.
@@ -36,9 +32,8 @@ ISO-8601 format.} \item{place}{A string specifying the place of measurement
 in general terms. E.g. \code{"Helsinki"}, \code{"Oulu"}} }
 }
 \examples{
-fmi_query("real-time", place = "Helsinki", api_key = "dummy")
+fmi_query("real-time", place = "Helsinki")
 }
 \seealso{
-\code{\link[=fmi_set_key]{fmi_set_key()}} for setting the API key for your session.
 \code{\link[=fmi_data]{fmi_data()}} to request data from the API.
 }

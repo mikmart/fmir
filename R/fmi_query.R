@@ -20,7 +20,7 @@
 #' @return A character vector containing query URLs for the FMI API.
 #' @seealso [fmi_data()] to request data from the API.
 #' @examples
-#' fmi_query("real-time", place = "Helsinki", api_key = "dummy")
+#' fmi_query("real-time", place = "Helsinki")
 #' @export
 fmi_query <- function(type = c("real-time", "daily", "monthly"), ...) {
   base_url <- fmi_base_url(type)

@@ -86,14 +86,13 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><strong>fmir</strong> provides simple tools for easily accessing up to date, open weather data from Finland. The data are made available by the <a href="https://en.ilmatieteenlaitos.fi">Finnish Meteorological Institute</a> and are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.</p>
+<p><strong>fmir</strong> provides simple tools for easily accessing up to date, open weather data from Finland. The data are made available by the <a href="https://en.ilmatieteenlaitos.fi">Finnish Meteorological Institute</a> and are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. See <a href="https://en.ilmatieteenlaitos.fi/open-data">FMI’s open data manual</a> for details.</p>
 <p>Key features in <strong>fmir</strong> include:</p>
 <ul>
 <li>Use simple R syntax to create queries for the FMI API</li>
 <li>Flexibly download XML weather data from the API</li>
 <li>Parse the XML response into a regular data frame</li>
 </ul>
-<p>In order to access the download services of the API, you’ll need to obtain a key by <a href="https://ilmatieteenlaitos.fi/rekisteroityminen-avoimen-datan-kayttajaksi">registering</a> for open data use with FMI. See <a href="https://en.ilmatieteenlaitos.fi/open-data">FMI’s open data manual</a> for details.</p>
 <p>FMI provides varying types of data in <a href="https://en.ilmatieteenlaitos.fi/open-data-manual-fmi-wfs-services">several different formats</a> in their API, implemented using OGC Web Feature Service (WFS). Currently the only format supported by <strong>fmir</strong> is the “simple” weather format. For a more comprehensive and feature-rich package for accessing the FMI API, check out <a href="https://github.com/rOpenGov/fmi" class="uri">https://github.com/rOpenGov/fmi</a>.</p>
 </div>
 <div id="installation" class="section level2">
@@ -106,31 +105,39 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>The first step is of course to load the package:</p>
+<p>To start with, load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fmir)</a></code></pre></div>
-<div id="setting-the-api-key" class="section level3">
-<h3 class="hasAnchor">
-<a href="#setting-the-api-key" class="anchor"></a>Setting the API key</h3>
-<p>To get started with downloading data, set your API key for the session with <code><a href="../reference/fmi_set_key.html">fmi_set_key()</a></code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/fmi_set_key.html">fmi_set_key</a></span>(<span class="st">"insert-your-apikey-here"</span>)</a></code></pre></div>
-<p>Alternatively, you can also save your API key into an environment variable called <code>FMIR_API_KEY</code> for persistence across sessions. That is also the method used for creating this vignette.</p>
-</div>
 <div id="a-basic-query" class="section level3">
 <h3 class="hasAnchor">
 <a href="#a-basic-query" class="anchor"></a>A basic query</h3>
-<p>Having set your key, we can construct queries to the API with <code><a href="../reference/fmi_query.html">fmi_query()</a></code>, and then execute them with <code><a href="../reference/fmi_data.html">fmi_data()</a></code>. A simple query with only a <code>place</code> parameter will return weather observations with a 10-minute interval for the past 12 hours:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># generate a (vector of) query url(s)</span></a>
-<a class="sourceLine" id="cb4-2" title="2">q &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fmi_query.html">fmi_query</a></span>(<span class="dt">place =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Espoo"</span>, <span class="st">"Oulu"</span>, <span class="st">"Rovaniemi"</span>))</a>
-<a class="sourceLine" id="cb4-3" title="3"></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co"># download the data corresponding to the query</span></a>
-<a class="sourceLine" id="cb4-5" title="5">weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fmi_data.html">fmi_data</a></span>(q)</a>
-<a class="sourceLine" id="cb4-6" title="6">weather</a></code></pre></div>
+<p>We can construct queries to the API with <code><a href="../reference/fmi_query.html">fmi_query()</a></code>, and then execute them with <code><a href="../reference/fmi_data.html">fmi_data()</a></code>. A simple query with only a <code>place</code> parameter will return weather observations with a 10-minute interval for the past 12 hours:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># generate a (vector of) query url(s)</span></a>
+<a class="sourceLine" id="cb3-2" title="2">q &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fmi_query.html">fmi_query</a></span>(<span class="dt">place =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Espoo"</span>, <span class="st">"Oulu"</span>, <span class="st">"Rovaniemi"</span>))</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co"># download the data corresponding to the query</span></a>
+<a class="sourceLine" id="cb3-5" title="5">weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/fmi_data.html">fmi_data</a></span>(q)</a>
+<a class="sourceLine" id="cb3-6" title="6">weather</a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; # A tibble: 216 x 14</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;    place location time                p_sea  r_1h    rh ri_10min snow_aws</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;  1 Espoo 60.1780~ 2019-02-09 22:50:00  995. NaN      93      0.5       39</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;  2 Espoo 60.1780~ 2019-02-09 23:00:00  995.   0.6    94      0.7       39</span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;  3 Espoo 60.1780~ 2019-02-09 23:10:00  995. NaN      94      0.6       39</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;  4 Espoo 60.1780~ 2019-02-09 23:20:00  995. NaN      95      0.4       39</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;  5 Espoo 60.1780~ 2019-02-09 23:30:00  995. NaN      95      0.7       39</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  6 Espoo 60.1780~ 2019-02-09 23:40:00  995  NaN      96      0.8       39</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  7 Espoo 60.1780~ 2019-02-09 23:50:00  995  NaN      96      1.4       39</span></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  8 Espoo 60.1780~ 2019-02-10 00:00:00  995.   0.9    97      1.6       39</span></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  9 Espoo 60.1780~ 2019-02-10 00:10:00  995. NaN      97      1.2       39</span></a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt; 10 Espoo 60.1780~ 2019-02-10 00:20:00  995. NaN      97      1         39</span></a>
+<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt; # ... with 206 more rows, and 6 more variables: t2m &lt;dbl&gt;, td &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt; #   vis &lt;dbl&gt;, wd_10min &lt;dbl&gt;, wg_10min &lt;dbl&gt;, ws_10min &lt;dbl&gt;</span></a></code></pre></div>
 <p>Having the data at hand, we can then use <strong>ggplot2</strong> to draw a simple line graph of the recent temperatures in Espoo, Oulu and Rovaniemi:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co"># draw a simple line graph of the recent temperature</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(time, t2m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> place))</a></code></pre></div>
-<p><img src="figure/fmir-vignette-basic-plot-1.png" width="288" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co"># draw a simple line graph of the recent temperature</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(time, t2m)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> place))</a></code></pre></div>
+<p><img src="fmir_files/figure-html/basic-plot-1.png" width="700"></p>
 </div>
 </div>
   </div>
