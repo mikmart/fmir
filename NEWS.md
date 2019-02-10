@@ -1,6 +1,6 @@
 # fmir 0.1.1
 
-# fmir 0.1.0.9000
+This is the final release of the package that uses API keys.
 
 * HTTP errors now include the description provided by the API.
 
