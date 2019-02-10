@@ -2,5 +2,6 @@
 
 export(fmi_data)
 export(fmi_query)
+importFrom(stats,setNames)
 importFrom(utils,head)
 importFrom(utils,tail)

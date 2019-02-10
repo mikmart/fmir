@@ -67,6 +67,7 @@ fmi_xml_vals <- function(xml, var) {
   readr::parse_guess(xml2::xml_text(xml_var))
 }
 
+#' @importFrom stats setNames
 fmi_data_tidy <- function(tbl) {
   if ("ParameterName" %in% names(tbl)) {
     tbl <- tidyr::spread(tbl, "ParameterName", "ParameterValue")
