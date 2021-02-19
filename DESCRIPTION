@@ -2,7 +2,7 @@ Type: Package
 Package: fmir
 Title: Access open weather data from the Finnish Meteorological
     Institute
-Version: 0.1.1.9000
+Version: 0.1.1.9001
 Authors@R: 
     person(given = "Mikko",
            family = "Marttila",
@@ -37,8 +37,6 @@ Suggests:
     rmarkdown
 VignetteBuilder: 
     knitr
-Remotes: 
-    r-lib/vctrs
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
